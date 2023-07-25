@@ -1,0 +1,17 @@
+{
+    "compilerOptions": {
+        "target": "es5",
+        "allowJs": true,
+        "skipLibCheck": true,
+        "jsx": "react-jsx",
+        "baseUrl": "src",
+        "strict": true,
+        "moduleResolution": "node",
+        "resolveJsonModule": true,
+        "esModuleInterop": true,
+        "paths": {
+            "react": [ "./node_modules/@types/react" ]
+          }
+    },
+    "include": ["src"]
+}
