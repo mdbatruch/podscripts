@@ -1,7 +1,7 @@
-import podscripts from "../../../../assets/podscripts.png";
+import podscripts from '../../../../assets/podscripts.png';
 
 const PodScriptsLogo = () => {
-    return <img src={podscripts} alt="podscripts" />
-}
+  return <img src={podscripts} alt="podscripts" />;
+};
 
 export default PodScriptsLogo;
