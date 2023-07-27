@@ -3,8 +3,11 @@ import styled from 'styled-components';
 import { LIGHT_GREY, WHITE } from 'styles/color';
 import { SPACE_20 } from 'styles/spacing';
 import { StepFieldType } from 'enums/stepFieldTypes';
-import StepFields from './core/fields/StepFields';
 import { useEffect, useState } from 'react';
+import InputText from './ui/forms/InputText';
+import InputRadio from './ui/forms/InputRadio';
+import AdvancedSearch from './core/sections/search/AdvancedSearch';
+import BasicSearch from './core/sections/search/BasicSearch';
 
 const InnerForm = styled.div`
   padding: ${SPACE_20};
@@ -25,85 +28,46 @@ const InnerFormSearchContainer = styled.div`
 
 const NavSearchInner = () => {
   const [checked, setChecked] = useState<string>('');
+  const [podcastSearch, setPodcastSearch] = useState<boolean>(false);
 
   const handleChange = (e: any) => {
-    console.log(e.target.value);
-
     setChecked(e.target.value);
-
-    console.log('checked', checked);
+    setPodcastSearch(false);
   };
 
-  useEffect(() => {
-    console.log('checked effect');
-  }, [checked]);
+  const togglePodcastSearch = (e: void) => {
+    setPodcastSearch(!podcastSearch);
+  };
+
+  useEffect(() => {}, [checked, podcastSearch]);
 
   return (
     <InnerForm className="header-search vis-header-search">
       <form className="header-search-form">
         <div className="header-search-left search-cell pod-search">
           <div className="input-field ">
-            {/* <input
-              type="text"
-              name="search-city-input"
-              placeholder="Type your query"
-              className="form-control search-input"
-            /> */}
-            <StepFields
-              type={StepFieldType.TEXT}
-              label={'label'}
-              placeholder={'Type your query'}
-            />
+            <InputText label={'label'} placeholder={'Type your query'} />
             <span className="search-clear-button">
               <i aria-hidden="true" className="fa fa-times-circle"></i>
             </span>
           </div>
         </div>
         <div className="search-type-selector search-cell">
-          {/* <input
-            type="radio"
-            id="rdo1"
-            // checked="checked"
-            name="radio-group"
-            className="radio-input"
-          /> */}
-          <StepFields
-            type={StepFieldType.RADIO}
+          <InputRadio
             value={'basic'}
             label={'Basic Search'}
             onChange={handleChange}
             checked={checked === 'basic'}
           />
-          {/* <label className="radio-label">
-            <span className="radio-border"></span>
-            Basic Search
-          </label> */}
-          {/* <input
-            type="radio"
-            id="rdo2"
-            name="radio-group"
-            className="radio-input"
-          /> */}
-          <StepFields
-            type={StepFieldType.RADIO}
+          <InputRadio
             value={'advanced'}
             label={'Advanced Search'}
-            onChange={handleChange}
+            onChange={togglePodcastSearch}
             checked={checked === 'advanced'}
           />
         </div>
         <div className="header-search-mid search-cell">
-          {/* <input
-            type="text"
-            placeholder="Select Podcast First"
-            // disabled="disabled"
-            className="search-input"
-          /> */}
-          <StepFields
-            type={StepFieldType.TEXT}
-            label={'label'}
-            placeholder={'Select Podcast First'}
-          />
+          {!!podcastSearch ? <AdvancedSearch /> : <BasicSearch />}
         </div>
         <InnerFormSearchContainer>
           <Button label={'Search'} backgroundColor={LIGHT_GREY} />

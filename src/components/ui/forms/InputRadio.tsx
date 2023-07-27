@@ -44,17 +44,25 @@ const RadioBorder = styled.div`
   z-index: 1;
 `;
 
-const InputRadio = (props: any) => {
-  var inputProps = {
-    value: props.value,
-    onChange: props.onChange,
-  };
+interface InputRadioProps {
+  value: string;
+  label: string;
+  checked: boolean;
+  onChange: (e: any) => void;
+}
 
+export const InputRadio = ({
+  value,
+  label,
+  checked,
+  onChange,
+  ...props
+}: InputRadioProps) => {
   return (
     <>
-      <Label>{props.label}</Label>
+      <Label>{label}</Label>
       <RadioBorder></RadioBorder>
-      <Radio type="radio" name="radio" {...inputProps} />
+      <Radio type="radio" name="radio" onChange={onChange} {...props} />
     </>
   );
 };

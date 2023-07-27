@@ -14,22 +14,11 @@ export interface SearchLogoProps {
   onClick: (e: UIEvent<HTMLElement>) => void;
 }
 
-const SearchLogo = (props: { show: any }) => {
-  // const [, setValue] = useState('');
-
-  // const handleChange = (e: any ) => {
-  //     if (e.target.value === '') {
-  //         return;
-  //     }
-
-  //     setValue(e.target.value);
-  // }
-
+const SearchLogo = () => {
   return (
     <SearchContainer>
       <PodScriptsLogo />
-      {/* <input type="text" placeholder="search" value={value} onChange={handleChange} /> */}
-      <SearchToggle show={props.show} />
+      <SearchToggle />
     </SearchContainer>
   );
 };

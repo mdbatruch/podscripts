@@ -1,6 +1,5 @@
-import { useEffect, useState } from 'react';
+import { createContext, useEffect, useState } from 'react';
 import PageContent from './PageContent';
-// import Header from './Header';
 import Nav from './components/Nav';
 import SearchLogo from './components/SearchLogo';
 import styled from 'styled-components';
@@ -45,6 +44,8 @@ const NavContainer = styled.div`
 
 const TopMenu = styled(Drawer)``;
 
+export const AppContext = createContext<any>(undefined);
+
 const App = () => {
   const [isShowing, setIsShowing] = useState<boolean>(false);
   const [sidebarActive, setSidebarActive] = useState<boolean>(false);
@@ -64,38 +65,40 @@ const App = () => {
 
   return (
     <div className="App">
-      <Header className="header">
-        <SearchLogo show={show} />
-        <NavContainer>
-          <Nav />
-          <SignInSubmit />
-        </NavContainer>
-        <Drawer
-          anchor={anchorLeft}
-          open={sidebarActive}
-          onClose={() => setSidebarActive(false)}
-          hideBackdrop={true}
-        >
-          <SideBar />
-        </Drawer>
-        <ToggleIcon sidebarToggle={sidebarToggle} />
-      </Header>
-      <NavSearch>
-        <TopMenu
-          anchor={anchor}
-          open={isShowing}
-          onClose={() => setIsShowing(false)}
-          sx={{
-            '& .MuiPaper-root': {
-              bgcolor: 'transparent',
-              boxShadow: 'none',
-            },
-          }}
-        >
-          <NavSearchInner />
-        </TopMenu>
-      </NavSearch>
-      <PageContent />
+      <AppContext.Provider value={{ show }}>
+        <Header className="header">
+          <SearchLogo />
+          <NavContainer>
+            <Nav />
+            <SignInSubmit />
+          </NavContainer>
+          <Drawer
+            anchor={anchorLeft}
+            open={sidebarActive}
+            onClose={() => setSidebarActive(false)}
+            hideBackdrop={true}
+          >
+            <SideBar />
+          </Drawer>
+          <ToggleIcon sidebarToggle={sidebarToggle} />
+        </Header>
+        <NavSearch>
+          <TopMenu
+            anchor={anchor}
+            open={isShowing}
+            onClose={() => setIsShowing(false)}
+            sx={{
+              '& .MuiPaper-root': {
+                bgcolor: 'transparent',
+                boxShadow: 'none',
+              },
+            }}
+          >
+            <NavSearchInner />
+          </TopMenu>
+        </NavSearch>
+        <PageContent />
+      </AppContext.Provider>
     </div>
   );
 };

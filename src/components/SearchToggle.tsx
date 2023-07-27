@@ -1,7 +1,9 @@
+import { useContext } from 'react';
 import styled from 'styled-components';
 import SearchIcon from './ui/icons/SearchIcon';
 import { BLUE, GREY_MAIN, WHITE } from '../styles/color';
 import { SPACE_10, SPACE_20 } from '../styles/spacing';
+import { AppContext } from 'App';
 
 const SearchToggleContainer = styled.div`
   color: ${WHITE};
@@ -25,11 +27,13 @@ const SearchText = styled.div`
   cursor: pointer;
 `;
 
-const SearchToggle = (props: { show: any }) => {
+const SearchToggle = () => {
+  const { show } = useContext(AppContext);
+
   return (
     <SearchToggleContainer>
       <SearchIcon color={BLUE} />
-      <SearchText onClick={() => props.show()}>Search</SearchText>
+      <SearchText onClick={() => show()}>Search</SearchText>
     </SearchToggleContainer>
   );
 };

@@ -9,11 +9,16 @@ const Text = styled.input`
   width: 100%;
 `;
 
-const InputText = (props: any) => {
+interface InputTextProps {
+  label?: string;
+  placeholder: string;
+}
+
+export const InputText = ({ label, placeholder, ...props }: InputTextProps) => {
   return (
     <>
-      <Label>{props.label}</Label>
-      <Text type="text" placeholder={props.placeholder} />
+      {label && <Label>{label}</Label>}
+      <Text type="text" placeholder={placeholder} />
     </>
   );
 };
