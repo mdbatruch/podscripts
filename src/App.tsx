@@ -91,6 +91,7 @@ const App = () => {
               '& .MuiPaper-root': {
                 bgcolor: 'transparent',
                 boxShadow: 'none',
+                overflowY: 'unset',
               },
             }}
           >

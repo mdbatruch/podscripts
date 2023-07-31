@@ -4,6 +4,8 @@ import Home from './Home';
 import About from './About';
 import Podcasts from './Podcasts';
 import Contact from './Contact';
+import Slider from 'stuff/Slider';
+import Typer from 'stuff/Typer';
 
 function PageContent() {
   useEffect(() => {}, []);

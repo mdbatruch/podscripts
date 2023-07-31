@@ -6,8 +6,9 @@ interface ButtonProps {
   backgroundColor?: string;
   label: string;
   onClick?: () => void;
-  rounded?: boolean | undefined;
+  rounded?: boolean;
   icon?: ReactNode | JSX.Element;
+  isDisabled?: boolean;
 }
 
 const ButtonWrapper = styled.button<{ rounded: boolean }>`

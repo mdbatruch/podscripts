@@ -1,9 +1,11 @@
 import styled from 'styled-components';
+import { BLUE, WHITE } from 'styles/color';
+import { SPACE_10 } from 'styles/spacing';
 
 const LinkButton = styled.div`
-  background: #0091ff;
-  padding: 10px 25px;
-  color: #fff;
+  background: ${BLUE};
+  padding: ${SPACE_10} 25px;
+  color: ${WHITE};
   border-radius: 4px;
 `;
 
