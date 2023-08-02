@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { WHITE } from 'styles/color';
 
 interface ButtonProps {
+  color?: string;
   backgroundColor?: string;
   label: string;
   onClick?: () => void;
@@ -18,6 +19,7 @@ const ButtonWrapper = styled.button<{ rounded: boolean }>`
   border: none;
   padding: 10px 25px;
   border-radius: 4px;
+  cursor: pointer;
   ${({ rounded }) =>
     rounded &&
     `
@@ -31,16 +33,19 @@ const ButtonWrapper = styled.button<{ rounded: boolean }>`
 
 const Button = ({
   backgroundColor,
+  color,
   label,
   rounded,
   icon,
+  isDisabled,
   ...props
 }: ButtonProps) => (
   <ButtonWrapper
     type="button"
     className={'secondary'}
-    style={{ backgroundColor }}
+    style={{ backgroundColor, color }}
     rounded={rounded!}
+    disabled={isDisabled}
     {...props}
   >
     {label}

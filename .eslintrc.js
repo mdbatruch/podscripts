@@ -1,8 +1,9 @@
 module.exports = {
-  // "extends": "eslint:recommended",
+  extends: [
+    'plugin:@typescript-eslint/recommended',
+  ],
   rules: {
-    // "semi": ["error", "always"],
-    // "quotes": ["error", "double"],
-    // "prettier/prettier": "error",
+    "quotes": "warn",
+    '@typescript-eslint/no-unused-vars': ['error', { vars: 'local', args: 'none' }],
   },
 };

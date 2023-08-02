@@ -4,8 +4,8 @@ import MinusIcon from 'components/ui/icons/MinusIcon';
 import PlusIcon from 'components/ui/icons/PlusIcon';
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { BLUE, LIGHT_GREY, WHITE } from 'styles/color';
-import { SPACE_10, SPACE_20 } from 'styles/spacing';
+import { BLACK, BLUE, LIGHT_GREY, WHITE } from 'styles/color';
+import { SPACE_20 } from 'styles/spacing';
 
 enum SEARCHPLACEHOLDER {
   ADD_KEYWORD = 'Add Keyword',
@@ -58,9 +58,9 @@ const AdvancedSearch = (props: any) => {
 
   useEffect(() => {
     if (inputList.length < 6) {
-      addQueryTag = false;
-    } else {
       addQueryTag = true;
+    } else {
+      addQueryTag = false;
     }
 
     if (inputList.length > 2) {
@@ -80,15 +80,16 @@ const AdvancedSearch = (props: any) => {
           rounded={true}
           icon={<PlusIcon height={20} width={20} fill={`${WHITE}`} />}
           onClick={() => addKeywords()}
-          isDisabled={addQueryTag}
+          isDisabled={!addQueryTag}
         />
         <Button
           label={SEARCHPLACEHOLDER.REMOVE_KEYWORD}
+          color={BLACK}
           backgroundColor={LIGHT_GREY}
           rounded={true}
-          icon={<MinusIcon height={20} width={20} fill={`${WHITE}`} />}
+          icon={<MinusIcon height={20} width={20} fill={`${BLACK}`} />}
           onClick={() => removeKeywords()}
-          isDisabled={removeQueryTag}
+          isDisabled={!removeQueryTag}
         />
       </KeywordButtonContainer>
       <AdvancedTextSearchContainer>{inputList}</AdvancedTextSearchContainer>
