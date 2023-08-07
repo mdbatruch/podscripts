@@ -9,11 +9,12 @@ import NavSearchInner from 'components/NavSearchInner';
 import SideBar from 'components/SideBar';
 import ToggleIcon from 'components/core/navigation/ToggleIcon';
 import { SPACE_20 } from 'styles/spacing';
-import SignInSubmit from 'components/SignInSubmit';
+import SignInSubmit, { SignIn } from 'components/SignInSubmit';
+import { useIsMobile } from 'utils/mobileUtil';
 
 const Header = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
   background: #333;
   box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.12);
@@ -25,6 +26,9 @@ const Header = styled.div`
   -webkit-transform: translateZ(0);
   width: 100%;
   z-index: 100;
+  box-shadow: 0px 2px 4px -1px rgba(0,0,0,0.2), 
+              0px 4px 5px 0px rgba(0,0,0,0.14), 
+              0px 1px 10px 0px rgba(0,0,0,0.12);
 `;
 
 const NavSearch = styled.div`
@@ -44,16 +48,27 @@ const NavContainer = styled.div`
 
 const TopMenu = styled(Drawer)``;
 
+const SideMenu = styled(Drawer)`
+  z-index: 90;
+`;
+
+
 export const AppContext = createContext<any>(undefined);
 
 const App = () => {
+  const isMobile = useIsMobile();
+
+  useEffect(() => {
+    if (!isMobile) {
+      setSidebarActive(false);
+    }
+  }, [isMobile]);
+  
   const [isShowing, setIsShowing] = useState<boolean>(false);
   const [sidebarActive, setSidebarActive] = useState<boolean>(false);
 
   const anchor = 'top';
   const anchorLeft = 'left';
-
-  useEffect(() => {}, [isShowing]);
 
   const show = () => {
     setIsShowing(!isShowing);
@@ -69,33 +84,44 @@ const App = () => {
         <Header className="header">
           <SearchLogo />
           <NavContainer>
-            <Nav />
-            <SignInSubmit />
+            <Nav mobileTrue={false} />
           </NavContainer>
-          <Drawer
+          <SignIn />
+          <SignInSubmit />
+          <SideMenu
             anchor={anchorLeft}
             open={sidebarActive}
-            onClose={() => setSidebarActive(false)}
+            onClose={() => sidebarToggle}
             hideBackdrop={true}
+            style={{ zIndex: 90 }}
+            // className={classes.drawer}
+            // classes={{
+            //   paper: classes.drawer
+            // }}
           >
             <SideBar />
-          </Drawer>
-          <ToggleIcon sidebarToggle={sidebarToggle} />
+          </SideMenu>
+          <ToggleIcon sidebarToggle={sidebarToggle} sidebarActive={sidebarActive} />
         </Header>
         <NavSearch>
           <TopMenu
             anchor={anchor}
             open={isShowing}
+            elevation={2}
             onClose={() => setIsShowing(false)}
+            style={{ zIndex: 90 }}
             sx={{
               '& .MuiPaper-root': {
-                bgcolor: 'transparent',
-                boxShadow: 'none',
-                overflowY: 'unset',
+                top: '75px',
+                margin: 'auto',
+                maxWidth: '90%',
+                padding: `${SPACE_20}`,
+                boxShadow: `0 7px 0 5px rgba(0,0,0,.2)`,
+                overflowY: 'inherit'
               },
             }}
           >
-            <NavSearchInner />
+            <NavSearchInner show={show} />
           </TopMenu>
         </NavSearch>
         <PageContent />

@@ -1,6 +1,7 @@
 import { createRoot } from 'react-dom/client';
 import App from './App';
 import { BrowserRouter } from 'react-router-dom';
+import { loadFonts } from 'utils/fontUtil';
 
 const renderApp = () => {
   const container = document.getElementById('root');
@@ -13,5 +14,11 @@ const renderApp = () => {
     </BrowserRouter>
   );
 };
+
+Promise.all([loadFonts()])
+  .then(renderApp)
+  .catch(error => {
+    console.log('inital error', error);
+  });
 
 renderApp();

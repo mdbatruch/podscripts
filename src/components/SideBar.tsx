@@ -7,13 +7,19 @@ const SideBarContainer = styled.div`
   bottom: 0;
   height: 100%;
   left: -300px;
-  margin: 80px 0 0;
+  margin: 0;
   min-height: 100%;
   overflow-y: scroll;
   top: 0;
   transition: all 0.5s;
   width: 280px;
   z-index: 101;
+  overflow: hidden;
+`;
+
+const NavParent = styled.div`
+  position: relative;
+  text-align: center;
 `;
 
 // const SideBarListItem = styled.div`
@@ -25,9 +31,9 @@ const SideBarContainer = styled.div`
 const SideBar = () => {
   return (
     <SideBarContainer className="sidebar" id="citiesId">
-      <div className="navage-sidebar">
-        <Nav />
-      </div>
+      <NavParent>
+        <Nav mobileTrue={true} />
+      </NavParent>
     </SideBarContainer>
   );
 };

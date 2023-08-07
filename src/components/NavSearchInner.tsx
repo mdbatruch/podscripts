@@ -1,27 +1,26 @@
 import { Button } from 'stories/Button';
 import styled from 'styled-components';
-import { BLUE, BORDER_GREY, LIGHT_GREY, WHITE } from 'styles/color';
+import { BORDER_GREY, GREY_MAIN, LIGHT_GREY, WHITE } from 'styles/color';
 import { SPACE_10, SPACE_20 } from 'styles/spacing';
-import { StepFieldType } from 'enums/stepFieldTypes';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import InputText from './ui/forms/InputText';
 import InputRadio from './ui/forms/InputRadio';
 import AdvancedSearch from './core/sections/search/AdvancedSearch';
 import BasicSearch from './core/sections/search/BasicSearch';
 import PODCASTS from 'mocks/PODCASTS.json';
+import { Link } from 'react-router-dom';
 
-interface PodcastItemProps {
+export interface PodcastItemProps {
   id: number;
   podcast_title: string;
 }
 
 const InnerForm = styled.div`
-  padding: ${SPACE_20};
   background-color: ${WHITE};
   box-shadow: none;
   left: 0;
   margin: 0 auto;
-  width: 80%;
+  width: 100%;
   right: 0;
   top: 0px;
 `;
@@ -38,10 +37,14 @@ const InnerFormSearchContainer = styled.div`
   padding: ${SPACE_20} 0 0 0;
 `;
 
+const InnerFormRadioContainer = styled.div`
+  display: flex;
+`;
+
 const PodcastSearchResults = styled.div`
   left: ${SPACE_10};
   position: absolute;
-  top: 36px;
+  top: 56px;
   width: 100%;
   z-index: 5;
   background-color: ${WHITE};
@@ -52,9 +55,9 @@ const PodcastSearchResults = styled.div`
 `;
 
 const PodcastItems = styled.div`
-  background-color: ${WHITE};
+  background-color: ${GREY_MAIN};
   border-bottom: 1px solid ${BORDER_GREY};
-  color: ${BLUE};
+  color: ${WHITE};
   display: block;
   line-height: 1.5rem;
   margin: 0;
@@ -62,7 +65,9 @@ const PodcastItems = styled.div`
   transition: 0.25s;
 `;
 
-const NavSearchInner = () => {
+const NavSearchInner = (props: any) => {
+
+  const { show } = props;
   const [checked, setChecked] = useState<string>('');
   const [podcastSearch, setPodcastSearch] = useState<boolean>(false);
   const [podcastItems, setPodcastItems] = useState<PodcastItemProps[]>([]);
@@ -96,7 +101,7 @@ const NavSearchInner = () => {
     setPodcastItems(filteredList);
   };
 
-  useEffect(() => {}, [checked, podcastSearch]);
+  // useEffect(() => {}, [checked, podcastSearch]);
 
   return (
     <InnerForm className="header-search vis-header-search">
@@ -104,7 +109,6 @@ const NavSearchInner = () => {
         <div className="header-search-left search-cell pod-search">
           <div className="input-field">
             <InputText
-              label={'label'}
               placeholder={'Type your query'}
               onChange={searchPodcasts}
             />
@@ -115,15 +119,22 @@ const NavSearchInner = () => {
           <PodcastSearchResults className={!!activeResults ? 'active' : ''}>
             {podcastItems &&
               podcastItems.map((item: PodcastItemProps, idx: number) => {
+                const link = item.podcast_title.toLocaleLowerCase().replaceAll(' ', '_')
+
                 return (
                   <PodcastItems key={item.id}>
-                    {item.podcast_title}
+                    <Link to={`/podcasts/${link}`} 
+                          style={{ textDecoration: 'none' }}
+                          onClick={() => show()}
+                          >
+                      {item.podcast_title}
+                    </Link>
                   </PodcastItems>
                 );
               })}
           </PodcastSearchResults>
         </div>
-        <div className="search-type-selector search-cell">
+        <InnerFormRadioContainer>
           <InputRadio
             value={'basic'}
             label={'Basic Search'}
@@ -136,7 +147,7 @@ const NavSearchInner = () => {
             onChange={togglePodcastSearch}
             checked={checked === 'advanced'}
           />
-        </div>
+        </InnerFormRadioContainer>
         <div className="header-search-mid search-cell">
           {!!podcastSearch ? <AdvancedSearch /> : <BasicSearch />}
         </div>

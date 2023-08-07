@@ -1,12 +1,15 @@
-import { Box } from '@mui/material';
 import styled from 'styled-components/macro';
-import { BLUE, WHITE } from 'styles/color';
+import { BLUE } from 'styles/color';
 import { SPACE_10, SPACE_20 } from 'styles/spacing';
+
+const RadioContainer = styled.div`
+  margin-right: ${SPACE_20};
+`;
 
 const Label = styled.div`
   display: inline-block;
   position: relative;
-  padding: 0 5px 0 ${SPACE_20};
+  padding: 0 5px 0 0;
   border-radius: 50%;
   &:after {
     border-radius: 50%;
@@ -59,11 +62,11 @@ export const InputRadio = ({
   ...props
 }: InputRadioProps) => {
   return (
-    <>
+    <RadioContainer>
       <Label>{label}</Label>
       <RadioBorder></RadioBorder>
       <Radio type="radio" name="radio" onChange={onChange} {...props} />
-    </>
+    </RadioContainer>
   );
 };
 

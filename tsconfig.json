@@ -11,7 +11,11 @@
     "esModuleInterop": true,
     "paths": {
       "react": ["./node_modules/@types/react"]
-    }
+    },
+    "lib": [
+      "DOM",
+      "ES2021.String"
+    ]
   },
   "include": ["src"]
 }

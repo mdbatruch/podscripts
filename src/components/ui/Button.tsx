@@ -1,6 +1,7 @@
 import { ReactNode } from 'react';
 import styled from 'styled-components';
 import { WHITE } from 'styles/color';
+import { SPACE_10, SPACE_20 } from 'styles/spacing';
 
 interface ButtonProps {
   color?: string;
@@ -17,18 +18,21 @@ const ButtonWrapper = styled.button<{ rounded: boolean }>`
   align-items: center;
   color: ${WHITE};
   border: none;
-  padding: 10px 25px;
+  padding: ${SPACE_10} ${SPACE_20} ${SPACE_10} 25px;
   border-radius: 4px;
   cursor: pointer;
   ${({ rounded }) =>
     rounded &&
     `
         border-radius: 30px;
-        box-shadow: 0 0 0 7px rgba(0,0,0,0.5);
+        box-shadow: 0 0 0 7px rgba(255,255,255,0.2);
         &:hover {
-            box-shadow: 0 0 0 7px rgba(0,0,0,0.25);
+            box-shadow: 0 0 0 7px rgba(100,100,100,0.4);
         }
-      `}
+  `}
+  svg {
+    margin: 3px 0px 0px 3px;
+  }
 `;
 
 const Button = ({

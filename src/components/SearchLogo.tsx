@@ -7,6 +7,7 @@ const SearchContainer = styled.div`
   padding: 20px;
   display: flex;
   align-items: center;
+  margin-right: auto;
 `;
 
 export interface SearchLogoProps {
