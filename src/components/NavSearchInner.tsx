@@ -2,7 +2,7 @@ import { Button } from 'stories/Button';
 import styled from 'styled-components';
 import { BORDER_GREY, GREY_MAIN, LIGHT_GREY, WHITE } from 'styles/color';
 import { SPACE_10, SPACE_20 } from 'styles/spacing';
-import { useState } from 'react';
+import { FormEvent, useState } from 'react';
 import InputText from './ui/forms/InputText';
 import InputRadio from './ui/forms/InputRadio';
 import AdvancedSearch from './core/sections/search/AdvancedSearch';
@@ -65,7 +65,7 @@ const PodcastItems = styled.div`
   transition: 0.25s;
 `;
 
-const NavSearchInner = (props: any) => {
+const NavSearchInner = ({...props}) => {
 
   const { show } = props;
   const [checked, setChecked] = useState<string>('');
@@ -73,17 +73,20 @@ const NavSearchInner = (props: any) => {
   const [podcastItems, setPodcastItems] = useState<PodcastItemProps[]>([]);
   const [activeResults, setActiveResults] = useState<boolean>(false);
 
-  const handleChange = (e: any) => {
-    setChecked(e.target.value);
+  const handleChange = (e: FormEvent<HTMLInputElement>) => {
+    const target = e.target as HTMLButtonElement;
+
+    setChecked(target.value);
     setPodcastSearch(false);
   };
 
-  const togglePodcastSearch = (e: void) => {
+  const togglePodcastSearch = () => {
     setPodcastSearch(!podcastSearch);
   };
 
-  const searchPodcasts = (e: any) => {
-    if (e.target.value === '') {
+  const searchPodcasts = (e: FormEvent<HTMLInputElement>) => {
+    const target = e.target as HTMLButtonElement;
+    if (target.value === '') {
       setActiveResults(false);
       return;
     }
@@ -94,14 +97,12 @@ const NavSearchInner = (props: any) => {
       return (
         item.podcast_title
           .toLowerCase()
-          .indexOf(e.target.value.toLowerCase()) !== -1
+          .indexOf(target.value.toLowerCase()) !== -1
       );
     });
 
     setPodcastItems(filteredList);
   };
-
-  // useEffect(() => {}, [checked, podcastSearch]);
 
   return (
     <InnerForm className="header-search vis-header-search">

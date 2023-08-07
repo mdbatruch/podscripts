@@ -16,7 +16,7 @@ function PageContent() {
         <Route path="contact" element={<Contact />} />
         <Route
           path="podcasts/:name"
-          element={<PodCastSingle match />} />
+          element={<PodCastSingle />} />
       </Routes>
     </div>
   );

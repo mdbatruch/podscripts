@@ -13,13 +13,12 @@ const MenuIconContainer = styled.div`
   }
 `;
 
-// const HamburgerMain = styled(Hamburger)`
-//     background-color: ${BLUE};
-//     color: ${BLUE};
-//     margin: 3000px;
-// `;
+interface ToggleIconProps {
+  sidebarActive?: boolean;
+  sidebarToggle: () => void;
+}
 
-const ToggleIcon = (props: any) => {
+const ToggleIcon = ({...props}: ToggleIconProps) => {
 
   const { sidebarActive, sidebarToggle } = props;
 

@@ -1,3 +1,4 @@
+import { FormEvent } from 'react';
 import styled from 'styled-components/macro';
 import { SPACE_10, SPACE_40 } from 'styles/spacing';
 
@@ -20,7 +21,7 @@ const Text = styled.input`
 interface InputTextProps {
   label?: string;
   placeholder: string;
-  onChange?: (e: any) => void;
+  onChange?: (e: FormEvent<HTMLInputElement>) => void;
 }
 
 export const InputText = ({

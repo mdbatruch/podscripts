@@ -27,7 +27,7 @@ const KeywordButtonContainer = styled.div`
   margin: ${SPACE_20} 0;
 `;
 
-const AdvancedSearch = (props: any) => {
+const AdvancedSearch = () => {
   let addQueryTag: boolean;
   let removeQueryTag: boolean;
 
@@ -78,7 +78,7 @@ const AdvancedSearch = (props: any) => {
           label={SEARCHPLACEHOLDER.ADD_KEYWORD}
           backgroundColor={BLUE}
           rounded={true}
-          icon={<PlusIcon height={20} width={20} fill={`${WHITE}`} />}
+          icon={<PlusIcon height={20} width={20} fill={WHITE} />}
           onClick={() => addKeywords()}
           isDisabled={!addQueryTag}
         />
@@ -87,7 +87,7 @@ const AdvancedSearch = (props: any) => {
           color={BLACK}
           backgroundColor={LIGHT_GREY}
           rounded={true}
-          icon={<MinusIcon height={20} width={20} fill={`${BLACK}`} />}
+          icon={<MinusIcon height={20} width={20} fill={BLACK} />}
           onClick={() => removeKeywords()}
           isDisabled={!removeQueryTag}
         />

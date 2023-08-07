@@ -1,6 +1,6 @@
 import InputText from 'components/ui/forms/InputText';
 
-const BasicSearch = (props: any) => {
+const BasicSearch = () => {
   return (
     <>
       <InputText placeholder={'Select Podcast First'} />

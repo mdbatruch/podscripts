@@ -1,3 +1,4 @@
+import { FormEvent } from 'react';
 import styled from 'styled-components/macro';
 import { BLUE } from 'styles/color';
 import { SPACE_10, SPACE_20 } from 'styles/spacing';
@@ -51,7 +52,7 @@ interface InputRadioProps {
   value: string;
   label: string;
   checked: boolean;
-  onChange: (e: any) => void;
+  onChange?: (e: FormEvent<HTMLInputElement>) => void;
 }
 
 export const InputRadio = ({

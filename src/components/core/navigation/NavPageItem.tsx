@@ -4,24 +4,23 @@ import { BLUE, WHITE } from '../../../styles/color';
 import { SPACE_20 } from 'styles/spacing';
 
 export const NavPageItem = styled(NavLink)<{
-    isMobile?: boolean
+    $isMobile?: boolean
   }>`
   position: relative;
   padding: 5px;
   text-decoration: none;
   color: ${WHITE};
   transition: color 0.2s ease-in-out;
-  font-family: 'Quicksand';
   &:hover {
     color: ${BLUE};
   }
-  ${({ isMobile }) => !!isMobile && `
+  ${({ $isMobile }) => !!$isMobile && `
     padding: ${SPACE_20}; 
     display: block;
   `}
     &.active {
       color: ${BLUE};
-  ${({ isMobile }) => !isMobile && `
+  ${({ $isMobile }) => !$isMobile && `
       &::before {
         background: ${BLUE};
         border-radius: 4px;

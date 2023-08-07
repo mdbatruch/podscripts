@@ -9,8 +9,9 @@ import NavSearchInner from 'components/NavSearchInner';
 import SideBar from 'components/SideBar';
 import ToggleIcon from 'components/core/navigation/ToggleIcon';
 import { SPACE_20 } from 'styles/spacing';
-import SignInSubmit, { SignIn } from 'components/SignInSubmit';
 import { useIsMobile } from 'utils/mobileUtil';
+import SignIn from 'components/ui/SignIn';
+import Submit from 'components/Submit';
 
 const Header = styled.div`
   display: flex;
@@ -87,17 +88,13 @@ const App = () => {
             <Nav mobileTrue={false} />
           </NavContainer>
           <SignIn />
-          <SignInSubmit />
+          <Submit />
           <SideMenu
             anchor={anchorLeft}
             open={sidebarActive}
             onClose={() => sidebarToggle}
             hideBackdrop={true}
             style={{ zIndex: 90 }}
-            // className={classes.drawer}
-            // classes={{
-            //   paper: classes.drawer
-            // }}
           >
             <SideBar />
           </SideMenu>

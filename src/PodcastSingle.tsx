@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 
-function PodCastSingle(match: any) {
+function PodCastSingle() {
   const { name } = useParams();
 
   return (
