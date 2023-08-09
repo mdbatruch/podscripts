@@ -1,12 +1,20 @@
+import styled from 'styled-components';
 interface TitleProps {
   title?: string;
 }
 
-const PageTitle = ({ title, ...props }: TitleProps) => {
+const PageTitleWrapper = styled.h2`
+  font-weight: 700;
+  display: flex;
+  justify-content: center;
+  font-size: 2rem;
+`;
+
+const PageTitle = ({ title }: TitleProps) => {
   return (
-    <div>
-      <h1>{title}</h1>
-    </div>
+    <PageTitleWrapper>
+      {title}
+    </PageTitleWrapper>
   );
 }
 

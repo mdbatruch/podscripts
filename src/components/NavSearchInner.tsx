@@ -2,7 +2,7 @@ import { Button } from 'stories/Button';
 import styled from 'styled-components';
 import { BORDER_GREY, GREY_MAIN, LIGHT_GREY, WHITE } from 'styles/color';
 import { SPACE_10, SPACE_20 } from 'styles/spacing';
-import { FormEvent, useState } from 'react';
+import { FormEvent, useCallback, useState } from 'react';
 import InputText from './ui/forms/InputText';
 import InputRadio from './ui/forms/InputRadio';
 import AdvancedSearch from './core/sections/search/AdvancedSearch';
@@ -84,7 +84,7 @@ const NavSearchInner = ({...props}) => {
     setPodcastSearch(!podcastSearch);
   };
 
-  const searchPodcasts = (e: FormEvent<HTMLInputElement>) => {
+  const searchPodcasts = useCallback((e: FormEvent<HTMLInputElement>) => {
     const target = e.target as HTMLButtonElement;
     if (target.value === '') {
       setActiveResults(false);
@@ -102,7 +102,7 @@ const NavSearchInner = ({...props}) => {
     });
 
     setPodcastItems(filteredList);
-  };
+  }, [setActiveResults, setPodcastItems]);
 
   return (
     <InnerForm className="header-search vis-header-search">

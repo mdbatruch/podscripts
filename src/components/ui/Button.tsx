@@ -18,6 +18,7 @@ const ButtonWrapper = styled.button<{ rounded: boolean }>`
   align-items: center;
   color: ${WHITE};
   border: none;
+  font-family: inherit;
   padding: ${SPACE_10} ${SPACE_20} ${SPACE_10} 25px;
   border-radius: 4px;
   cursor: pointer;

@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-// import { SPACE_20 } from "styles/spacing";
 import Nav from './Nav';
 
 const SideBarContainer = styled.div`
@@ -21,12 +20,6 @@ const NavParent = styled.div`
   position: relative;
   text-align: center;
 `;
-
-// const SideBarListItem = styled.div`
-//     display: block;
-//     padding: ${SPACE_20} 0;
-//     position: relative;
-// `;
 
 const SideBar = () => {
   return (

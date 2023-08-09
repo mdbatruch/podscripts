@@ -2,6 +2,7 @@ import { UIEvent, ReactNode } from 'react';
 import styled from 'styled-components';
 import PodScriptsLogo from './ui/icons/logos/PodScriptsLogo';
 import SearchToggle from './SearchToggle';
+import { Link } from 'react-router-dom';
 
 const SearchContainer = styled.div`
   padding: 20px;
@@ -18,7 +19,9 @@ export interface SearchLogoProps {
 const SearchLogo = () => {
   return (
     <SearchContainer>
-      <PodScriptsLogo />
+      <Link to="/">
+        <PodScriptsLogo />
+      </Link>
       <SearchToggle />
     </SearchContainer>
   );
