@@ -65,8 +65,7 @@ const PodcastItems = styled.div`
   transition: 0.25s;
 `;
 
-const NavSearchInner = ({...props}) => {
-
+const NavSearchInner = ({ ...props }) => {
   const { show } = props;
   const [checked, setChecked] = useState<string>('');
   const [podcastSearch, setPodcastSearch] = useState<boolean>(false);
@@ -84,25 +83,28 @@ const NavSearchInner = ({...props}) => {
     setPodcastSearch(!podcastSearch);
   };
 
-  const searchPodcasts = useCallback((e: FormEvent<HTMLInputElement>) => {
-    const target = e.target as HTMLButtonElement;
-    if (target.value === '') {
-      setActiveResults(false);
-      return;
-    }
+  const searchPodcasts = useCallback(
+    (e: FormEvent<HTMLInputElement>) => {
+      const target = e.target as HTMLButtonElement;
+      if (target.value === '') {
+        setActiveResults(false);
+        return;
+      }
 
-    setActiveResults(true);
+      setActiveResults(true);
 
-    const filteredList = PODCASTS.filter((item) => {
-      return (
-        item.podcast_title
-          .toLowerCase()
-          .indexOf(target.value.toLowerCase()) !== -1
-      );
-    });
+      const filteredList = PODCASTS.filter((item) => {
+        return (
+          item.podcast_title
+            .toLowerCase()
+            .indexOf(target.value.toLowerCase()) !== -1
+        );
+      });
 
-    setPodcastItems(filteredList);
-  }, [setActiveResults, setPodcastItems]);
+      setPodcastItems(filteredList);
+    },
+    [setActiveResults, setPodcastItems]
+  );
 
   return (
     <InnerForm className="header-search vis-header-search">
@@ -120,14 +122,20 @@ const NavSearchInner = ({...props}) => {
           <PodcastSearchResults className={!!activeResults ? 'active' : ''}>
             {podcastItems &&
               podcastItems.map((item: PodcastItemProps, idx: number) => {
-                const link = item.podcast_title.toLocaleLowerCase().replaceAll(' ', '_')
+                /**
+                 * TODO - move to formatUtil
+                 */
+                const link = item.podcast_title
+                  .toLocaleLowerCase()
+                  .replaceAll(' ', '_');
 
                 return (
                   <PodcastItems key={item.id}>
-                    <Link to={`/podcasts/${link}`} 
-                          style={{ textDecoration: 'none' }}
-                          onClick={() => show()}
-                          >
+                    <Link
+                      to={`/podcasts/${link}`}
+                      style={{ textDecoration: 'none' }}
+                      onClick={() => show()}
+                    >
                       {item.podcast_title}
                     </Link>
                   </PodcastItems>

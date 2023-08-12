@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 // import { Menu as MenuIcon } from '@mui/icons-material';
-import Hamburger from 'hamburger-react'
+import Hamburger from 'hamburger-react';
 import { BLUE, WHITE } from 'styles/color';
 import { SPACE_10 } from 'styles/spacing';
 
@@ -18,8 +18,7 @@ interface ToggleIconProps {
   sidebarToggle: () => void;
 }
 
-const ToggleIcon = ({...props}: ToggleIconProps) => {
-
+const ToggleIcon = ({ ...props }: ToggleIconProps) => {
   const { sidebarActive, sidebarToggle } = props;
 
   return (

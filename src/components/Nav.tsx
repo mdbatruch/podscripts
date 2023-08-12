@@ -7,14 +7,17 @@ import { useIsMobile } from 'utils/mobileUtil';
 
 const NavContainer = styled.ul<{ $isMobile?: boolean }>`
   display: flex;
-  ${({ $isMobile }) => !!$isMobile && `flex-direction: column; padding: 75px 0px 0px;` };
-  ${({ $isMobile }) => !$isMobile && `padding: 0px;` };
+  ${({ $isMobile }) =>
+    !!$isMobile && `flex-direction: column; padding: 75px 0px 0px;`};
+  ${({ $isMobile }) => !$isMobile && `padding: 0px;`};
   margin: 0px;
 `;
 
 const NavLiItem = styled.li<{ $isMobile?: boolean }>`
   list-style: none;
-  ${({ $isMobile }) => !!$isMobile && `
+  ${({ $isMobile }) =>
+    !!$isMobile &&
+    `
     border-top: 1px solid ${BLUE};
     &:last-child {
       border-bottom: 1px solid ${BLUE};
@@ -26,8 +29,7 @@ interface NavProps {
   mobileTrue?: boolean;
 }
 
-const Nav = ({mobileTrue, ...props}: NavProps) => {
-
+const Nav = ({ mobileTrue, ...props }: NavProps) => {
   const isMobile = useIsMobile();
 
   return (

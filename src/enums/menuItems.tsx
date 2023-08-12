@@ -9,7 +9,7 @@ type MenuItemSettingsType = {
 
 export const MenuItems: MenuItemSettingsType = {
   Home: { label: 'Home', url: '/' },
-  About: { label: 'About', url: 'about' },
   Podcasts: { label: 'Podcasts', url: 'podcasts' },
+  About: { label: 'About', url: 'about' },
   Contact: { label: 'Contact', url: 'contact' },
 };

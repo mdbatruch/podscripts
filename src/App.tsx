@@ -13,11 +13,10 @@ import { useIsMobile } from 'utils/mobileUtil';
 import SignIn from 'components/ui/SignIn';
 import Submit from 'components/Submit';
 
-
 enum HeaderType {
   HEADER_PARENT = 'header-parent',
   TOP_MENU = 'top-menu',
-  SIDE_MENU = 'side-menu'
+  SIDE_MENU = 'side-menu',
 }
 
 const Header = styled.div`
@@ -34,9 +33,8 @@ const Header = styled.div`
   -webkit-transform: translateZ(0);
   width: 100%;
   z-index: 100;
-  box-shadow: 0px 2px 4px -1px rgba(0,0,0,0.2), 
-              0px 4px 5px 0px rgba(0,0,0,0.14), 
-              0px 1px 10px 0px rgba(0,0,0,0.12);
+  box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
+    0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
 `;
 
 const NavSearch = styled.div`
@@ -60,7 +58,6 @@ const SideMenu = styled(Drawer)`
   z-index: 90;
 `;
 
-
 export const AppContext = createContext<any>(undefined);
 
 const App = () => {
@@ -71,7 +68,7 @@ const App = () => {
       setSidebarActive(false);
     }
   }, [isMobile]);
-  
+
   const [isShowing, setIsShowing] = useState<boolean>(false);
   const [sidebarActive, setSidebarActive] = useState<boolean>(false);
 
@@ -106,7 +103,10 @@ const App = () => {
           >
             <SideBar />
           </SideMenu>
-          <ToggleIcon sidebarToggle={sidebarToggle} sidebarActive={sidebarActive} />
+          <ToggleIcon
+            sidebarToggle={sidebarToggle}
+            sidebarActive={sidebarActive}
+          />
         </Header>
         <NavSearch>
           <TopMenu
@@ -123,7 +123,7 @@ const App = () => {
                 maxWidth: '90%',
                 padding: `${SPACE_20}`,
                 boxShadow: `0 7px 0 5px rgba(0,0,0,.2)`,
-                overflowY: 'inherit'
+                overflowY: 'inherit',
               },
             }}
           >

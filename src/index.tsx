@@ -17,7 +17,7 @@ const renderApp = () => {
 
 Promise.all([loadFonts()])
   .then(renderApp)
-  .catch(error => {
+  .catch((error) => {
     console.log('inital error', error);
   });
 

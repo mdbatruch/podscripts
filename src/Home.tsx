@@ -9,7 +9,7 @@ import Subtitle from 'components/core/sections/subtitle/Subtitle';
 import Pagination, { PaginationType } from 'components/ui/Pagination';
 
 enum PodcastType {
-  PODCAST_PARENT = 'podcast-parent'
+  PODCAST_PARENT = 'podcast-parent',
 }
 
 const PodcastParentContainer = styled.div`
@@ -33,7 +33,6 @@ const PaginationParent = styled.div`
   width: 100%;
 `;
 
-
 function Home() {
   const PageSize = 15;
 
@@ -45,19 +44,18 @@ function Home() {
     return PODCASTS.slice(firstPageIndex, lastPageIndex);
   }, [currentPage]);
 
+  /**
+   * TODO - reformat `PodcastList` and set it via Context for all components
+   */
   const PodcastList = useMemo(() => {
     if (!currentTableData) return [];
 
     if (currentTableData) {
       return (
         <>
-          {
-            currentTableData.map(item => {
-              return (
-                <Podcast key={item.id} title={item.podcast_title} />
-              );
-            })
-          }
+          {currentTableData.map((item) => {
+            return <Podcast key={item.id} title={item.podcast_title} />;
+          })}
         </>
       );
     }
@@ -73,7 +71,7 @@ function Home() {
       <HomeMain>
         <Subtitle />
         <div>
-          <PodcastParentContainer  data-testid={PodcastType.PODCAST_PARENT}>
+          <PodcastParentContainer data-testid={PodcastType.PODCAST_PARENT}>
             {PodcastList}
           </PodcastParentContainer>
           <PaginationParent data-testid={PaginationType.PAGINATION_PARENT}>

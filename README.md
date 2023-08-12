@@ -2,6 +2,10 @@
 
 This is a re-skin of the site [Podscripts](https://podscripts.co/)
 
+Visit the prod site for the latest updates!
+
+[The Podscript Dude](https://thepodscriptdude.com/)
+
 ## Using
 
 - ([React](https://react.dev/))
@@ -10,6 +14,7 @@ This is a re-skin of the site [Podscripts](https://podscripts.co/)
 - ([React Router Dom](https://reactrouter.com/en/main))
 
 ## Documentation
+
 ## Getting started
 
 Make sure to have Node and Yarn installed. Recommended to use NVM package manager.
@@ -18,6 +23,7 @@ Make sure to have Node and Yarn installed. Recommended to use NVM package manage
 - node = v18.17.0
 - yarn = v1.22.19
 ```
+
 ### Installation
 
 ```
@@ -26,19 +32,23 @@ Make sure to have Node and Yarn installed. Recommended to use NVM package manage
 - yarn
 - yarn start
 ```
+
 ## Notes
 
 To keep track of current shared/reusable components, use storybook view current library
+
 ```
 - yarn storybook
 ```
 
 To run current e2e tests ([React Testing Library](https://testing-library.com/docs/react-testing-library/intro/))
+
 ```
 - yarn test
 ```
 
 To cleanup code with ([Prettier](https://prettier.io/))
+
 ```
 - yarn format
 ```

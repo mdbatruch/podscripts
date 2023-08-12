@@ -1,6 +1,6 @@
 import PageTitle from './PageTitle';
 
-function About() {
+const About = () => {
   return (
     <div>
       <PageTitle title={'About PodScripts'} />

@@ -36,9 +36,8 @@ const AdvancedSearch = () => {
     <InputText key={1} placeholder={'Keyword'} />,
   ]);
 
-    addQueryTag = inputList.length < 6;
+  addQueryTag = inputList.length < 6;
   removeQueryTag = inputList.length > 2;
-
 
   const addKeywords = (e: void) => {
     if (inputList.length < 6) {

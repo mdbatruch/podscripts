@@ -6,7 +6,6 @@ import Contact from './Contact';
 import PodCastSingle from 'PodcastSingle';
 
 function PageContent() {
-
   return (
     <div>
       <Routes>
@@ -14,9 +13,7 @@ function PageContent() {
         <Route path="podcasts" element={<Podcasts />} />
         <Route path="about" element={<About />} />
         <Route path="contact" element={<Contact />} />
-        <Route
-          path="podcasts/:name"
-          element={<PodCastSingle />} />
+        <Route path="podcasts/:name" element={<PodCastSingle />} />
       </Routes>
     </div>
   );

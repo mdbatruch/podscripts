@@ -14,7 +14,6 @@ const SubmitContainer = styled.div`
 `;
 
 const SubmitLink = () => {
-
   return (
     <Link to="/submit" style={{ textDecoration: 'none' }}>
       <Button

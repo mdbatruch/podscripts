@@ -11,11 +11,7 @@ const PageTitleWrapper = styled.h2`
 `;
 
 const PageTitle = ({ title }: TitleProps) => {
-  return (
-    <PageTitleWrapper>
-      {title}
-    </PageTitleWrapper>
-  );
-}
+  return <PageTitleWrapper>{title}</PageTitleWrapper>;
+};
 
 export default PageTitle;
