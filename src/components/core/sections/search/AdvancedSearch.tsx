@@ -7,7 +7,7 @@ import styled from 'styled-components';
 import { BLACK, BLUE, LIGHT_GREY, WHITE } from 'styles/color';
 import { SPACE_20 } from 'styles/spacing';
 
-enum SEARCHPLACEHOLDER {
+enum SearchPlaceholder {
   ADD_KEYWORD = 'Add Keyword',
   REMOVE_KEYWORD = 'Remove Keyword',
 }
@@ -75,7 +75,7 @@ const AdvancedSearch = () => {
       <p>Use a Combination of keywords to find episodes</p>
       <KeywordButtonContainer>
         <Button
-          label={SEARCHPLACEHOLDER.ADD_KEYWORD}
+          label={SearchPlaceholder.ADD_KEYWORD}
           backgroundColor={BLUE}
           rounded={true}
           icon={<PlusIcon height={20} width={20} fill={WHITE} />}
@@ -83,7 +83,7 @@ const AdvancedSearch = () => {
           isDisabled={!addQueryTag}
         />
         <Button
-          label={SEARCHPLACEHOLDER.REMOVE_KEYWORD}
+          label={SearchPlaceholder.REMOVE_KEYWORD}
           color={BLACK}
           backgroundColor={LIGHT_GREY}
           rounded={true}

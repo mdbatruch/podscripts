@@ -13,6 +13,13 @@ import { useIsMobile } from 'utils/mobileUtil';
 import SignIn from 'components/ui/SignIn';
 import Submit from 'components/Submit';
 
+
+enum HeaderType {
+  HEADER_PARENT = 'header-parent',
+  TOP_MENU = 'top-menu',
+  SIDE_MENU = 'side-menu'
+}
+
 const Header = styled.div`
   display: flex;
   justify-content: flex-end;
@@ -82,7 +89,7 @@ const App = () => {
   return (
     <div className="App">
       <AppContext.Provider value={{ show }}>
-        <Header className="header">
+        <Header data-testid={HeaderType.HEADER_PARENT} className="header">
           <SearchLogo />
           <NavContainer>
             <Nav mobileTrue={false} />
@@ -90,10 +97,11 @@ const App = () => {
           <SignIn />
           <Submit />
           <SideMenu
+            data-testid={HeaderType.SIDE_MENU}
             anchor={anchorLeft}
             open={sidebarActive}
-            onClose={() => sidebarToggle}
             hideBackdrop={true}
+            onClick={() => sidebarToggle()}
             style={{ zIndex: 90 }}
           >
             <SideBar />
@@ -102,6 +110,7 @@ const App = () => {
         </Header>
         <NavSearch>
           <TopMenu
+            data-testid={HeaderType.TOP_MENU}
             anchor={anchor}
             open={isShowing}
             elevation={2}

@@ -26,6 +26,7 @@ const PodcastContainerInner = styled.article`
     border-radius: 10px;
     overflow: hidden;
     position: relative;
+    height: 350px;
 `;
 
 const PodcastTitle = styled.h3`
