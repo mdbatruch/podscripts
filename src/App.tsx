@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import PageContent from './PageContent';
 import Nav from './components/Nav';
 import SearchLogo from './components/SearchLogo';
@@ -12,6 +12,7 @@ import { SPACE_20 } from 'styles/spacing';
 import { useIsMobile } from 'utils/mobileUtil';
 import SignIn from 'components/ui/SignIn';
 import Submit from 'components/Submit';
+import { getNav } from 'contexts/NavContext';
 
 enum HeaderType {
   HEADER_PARENT = 'header-parent',
@@ -58,16 +59,17 @@ const SideMenu = styled(Drawer)`
   z-index: 90;
 `;
 
-export const AppContext = createContext<any>(undefined);
-
 const App = () => {
   const isMobile = useIsMobile();
+  const { show } = getNav();
 
   useEffect(() => {
     if (!isMobile) {
       setSidebarActive(false);
     }
-  }, [isMobile]);
+
+    setIsShowing(show);
+  }, [isMobile, show]);
 
   const [isShowing, setIsShowing] = useState<boolean>(false);
   const [sidebarActive, setSidebarActive] = useState<boolean>(false);
@@ -75,63 +77,57 @@ const App = () => {
   const anchor = 'top';
   const anchorLeft = 'left';
 
-  const show = () => {
-    setIsShowing(!isShowing);
-  };
-
   const sidebarToggle = () => {
     setSidebarActive(!sidebarActive);
   };
 
   return (
     <div className="App">
-      <AppContext.Provider value={{ show }}>
-        <Header data-testid={HeaderType.HEADER_PARENT} className="header">
-          <SearchLogo />
-          <NavContainer>
-            <Nav mobileTrue={false} />
-          </NavContainer>
-          <SignIn />
-          <Submit />
-          <SideMenu
-            data-testid={HeaderType.SIDE_MENU}
-            anchor={anchorLeft}
-            open={sidebarActive}
-            hideBackdrop={true}
-            onClick={() => sidebarToggle()}
-            style={{ zIndex: 90 }}
-          >
-            <SideBar />
-          </SideMenu>
-          <ToggleIcon
-            sidebarToggle={sidebarToggle}
-            sidebarActive={sidebarActive}
-          />
-        </Header>
-        <NavSearch>
-          <TopMenu
-            data-testid={HeaderType.TOP_MENU}
-            anchor={anchor}
-            open={isShowing}
-            elevation={2}
-            onClose={() => setIsShowing(false)}
-            style={{ zIndex: 90 }}
-            sx={{
-              '& .MuiPaper-root': {
-                top: '75px',
-                margin: 'auto',
-                maxWidth: '90%',
-                padding: `${SPACE_20}`,
-                boxShadow: `0 7px 0 5px rgba(0,0,0,.2)`,
-                overflowY: 'inherit',
-              },
-            }}
-          >
-            <NavSearchInner show={show} />
-          </TopMenu>
-        </NavSearch>
-        <PageContent />
-      </AppContext.Provider>
+      <Header data-testid={HeaderType.HEADER_PARENT} className="header">
+        <SearchLogo />
+        <NavContainer>
+          <Nav mobileTrue={false} />
+        </NavContainer>
+        <SignIn />
+        <Submit />
+        <SideMenu
+          data-testid={HeaderType.SIDE_MENU}
+          anchor={anchorLeft}
+          open={sidebarActive}
+          hideBackdrop={true}
+          onClick={() => sidebarToggle()}
+          style={{ zIndex: 90 }}
+        >
+          <SideBar />
+        </SideMenu>
+        <ToggleIcon
+          sidebarToggle={sidebarToggle}
+          sidebarActive={sidebarActive}
+        />
+      </Header>
+      <NavSearch>
+        <TopMenu
+          data-testid={HeaderType.TOP_MENU}
+          anchor={anchor}
+          open={isShowing}
+          elevation={2}
+          onClose={() => setIsShowing(false)}
+          style={{ zIndex: 90 }}
+          sx={{
+            '& .MuiPaper-root': {
+              top: '75px',
+              margin: 'auto',
+              maxWidth: '90%',
+              padding: `${SPACE_20}`,
+              boxShadow: `0 7px 0 5px rgba(0,0,0,.2)`,
+              overflowY: 'inherit',
+            },
+          }}
+        >
+          <NavSearchInner />
+        </TopMenu>
+      </NavSearch>
+      <PageContent />
     </div>
   );
 };

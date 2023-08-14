@@ -30,7 +30,7 @@ const PaginationList = styled.li<{ isDisabled?: boolean }>`
   }
 `;
 
-const PaginationListInnerDots = styled.li`
+const PaginationListInnerDots = styled.div`
   padding: 0 6px;
   margin: 0 3px;
 `;
@@ -110,16 +110,13 @@ const Pagination = ({
       </PaginationList>
       {paginationRange?.map((pageNumber) => {
         return (
-          <>
+          <div key={pageNumber}>
             {pageNumber === DOTS ? (
-              <PaginationList key={pageNumber}>
+              <PaginationList>
                 <PaginationListInnerDots>&#8230;</PaginationListInnerDots>
               </PaginationList>
             ) : (
-              <PaginationList
-                key={pageNumber}
-                onClick={() => onPageChange(Number(pageNumber))}
-              >
+              <PaginationList onClick={() => onPageChange(Number(pageNumber))}>
                 <PaginationListInner
                   className={
                     currentPage === pageNumber ? 'active-item' : undefined
@@ -129,7 +126,7 @@ const Pagination = ({
                 </PaginationListInner>
               </PaginationList>
             )}
-          </>
+          </div>
         );
       })}
       <PaginationList onClick={() => onNext()}>

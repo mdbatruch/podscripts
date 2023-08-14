@@ -6,5 +6,5 @@ const About = () => {
       <PageTitle title={'About PodScripts'} />
     </div>
   );
-}
+};
 export default About;

@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 import PageTitle from './PageTitle';
 import Podcast from 'components/sections/podcasts/Podcast';
-import PODCASTS from 'mocks/PODCASTS.json';
 import { VERY_LIGHT_GREY } from 'styles/color';
 import { SPACE_40 } from 'styles/spacing';
 import { useMemo, useState } from 'react';
 import Subtitle from 'components/core/sections/subtitle/Subtitle';
 import Pagination, { PaginationType } from 'components/ui/Pagination';
+import { getData } from 'contexts/DataContext';
 
 enum PodcastType {
   PODCAST_PARENT = 'podcast-parent',
@@ -37,11 +37,12 @@ function Home() {
   const PageSize = 15;
 
   const [currentPage, setCurrentPage] = useState(1);
+  const { podcasts } = getData();
 
   const currentTableData = useMemo(() => {
     const firstPageIndex = (currentPage - 1) * PageSize;
     const lastPageIndex = firstPageIndex + PageSize;
-    return PODCASTS.slice(firstPageIndex, lastPageIndex);
+    return podcasts.slice(firstPageIndex, lastPageIndex);
   }, [currentPage]);
 
   /**
@@ -78,7 +79,7 @@ function Home() {
             <Pagination
               className={`pagination-bar`}
               currentPage={currentPage}
-              totalCount={PODCASTS.length}
+              totalCount={podcasts.length}
               pageSize={PageSize}
               onPageChange={(page: number) => setCurrentPage(page)}
             />

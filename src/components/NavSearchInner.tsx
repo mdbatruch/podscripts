@@ -7,8 +7,9 @@ import InputText from './ui/forms/InputText';
 import InputRadio from './ui/forms/InputRadio';
 import AdvancedSearch from './core/sections/search/AdvancedSearch';
 import BasicSearch from './core/sections/search/BasicSearch';
-import PODCASTS from 'mocks/PODCASTS.json';
 import { Link } from 'react-router-dom';
+import { getData } from 'contexts/DataContext';
+import { getNav } from 'contexts/NavContext';
 
 export interface PodcastItemProps {
   id: number;
@@ -65,12 +66,13 @@ const PodcastItems = styled.div`
   transition: 0.25s;
 `;
 
-const NavSearchInner = ({ ...props }) => {
-  const { show } = props;
+const NavSearchInner = () => {
   const [checked, setChecked] = useState<string>('');
   const [podcastSearch, setPodcastSearch] = useState<boolean>(false);
   const [podcastItems, setPodcastItems] = useState<PodcastItemProps[]>([]);
   const [activeResults, setActiveResults] = useState<boolean>(false);
+  const { podcasts } = getData();
+  const { show, setIsShow } = getNav();
 
   const handleChange = (e: FormEvent<HTMLInputElement>) => {
     const target = e.target as HTMLButtonElement;
@@ -93,7 +95,7 @@ const NavSearchInner = ({ ...props }) => {
 
       setActiveResults(true);
 
-      const filteredList = PODCASTS.filter((item) => {
+      const filteredList = podcasts.filter((item) => {
         return (
           item.podcast_title
             .toLowerCase()
@@ -134,7 +136,7 @@ const NavSearchInner = ({ ...props }) => {
                     <Link
                       to={`/podcasts/${link}`}
                       style={{ textDecoration: 'none' }}
-                      onClick={() => show()}
+                      onClick={() => setIsShow(!show)}
                     >
                       {item.podcast_title}
                     </Link>

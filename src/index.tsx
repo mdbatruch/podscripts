@@ -2,6 +2,7 @@ import { createRoot } from 'react-dom/client';
 import App from './App';
 import { BrowserRouter } from 'react-router-dom';
 import { loadFonts } from 'utils/fontUtil';
+import MainProvider from 'contexts/MainContext';
 
 const renderApp = () => {
   const container = document.getElementById('root');
@@ -10,7 +11,9 @@ const renderApp = () => {
   const root = createRoot(container);
   root.render(
     <BrowserRouter>
-      <App />
+      <MainProvider>
+        <App />
+      </MainProvider>
     </BrowserRouter>
   );
 };
