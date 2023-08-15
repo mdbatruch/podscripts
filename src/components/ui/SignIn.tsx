@@ -1,7 +1,7 @@
 import { HeaderText } from 'components/core/typography/HeaderText';
 import DoorIcon from './icons/DoorIcon';
 import { Link } from 'react-router-dom';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { WHITE, BLUE } from 'styles/color';
 import { SPACE_20 } from 'styles/spacing';
 

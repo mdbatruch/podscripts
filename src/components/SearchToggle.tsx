@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import SearchIcon from './ui/icons/SearchIcon';
 import { BLUE, GREY_MAIN, WHITE } from '../styles/color';
 import { SPACE_10, SPACE_20 } from '../styles/spacing';

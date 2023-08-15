@@ -1,5 +1,5 @@
 import { UIEvent, ReactNode } from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import PodScriptsLogo from './ui/icons/logos/PodScriptsLogo';
 import SearchToggle from './SearchToggle';
 import { Link } from 'react-router-dom';

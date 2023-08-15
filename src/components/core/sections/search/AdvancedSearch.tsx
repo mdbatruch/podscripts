@@ -3,7 +3,7 @@ import InputText from 'components/ui/forms/InputText';
 import MinusIcon from 'components/ui/icons/MinusIcon';
 import PlusIcon from 'components/ui/icons/PlusIcon';
 import { useEffect, useState } from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { BLACK, BLUE, LIGHT_GREY, WHITE } from 'styles/color';
 import { SPACE_20 } from 'styles/spacing';
 

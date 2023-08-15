@@ -1,5 +1,5 @@
 import { Button } from 'stories/Button';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { BORDER_GREY, GREY_MAIN, LIGHT_GREY, WHITE } from 'styles/color';
 import { SPACE_10, SPACE_20 } from 'styles/spacing';
 import { FormEvent, useCallback, useState } from 'react';

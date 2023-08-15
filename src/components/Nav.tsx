@@ -1,5 +1,5 @@
 import { NavPageItem } from './core/navigation/NavPageItem';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { TestId } from '../enums/testing';
 import { MenuItems } from 'enums/menuItems';
 import { BLUE } from 'styles/color';

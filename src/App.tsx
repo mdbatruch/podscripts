@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import PageContent from './PageContent';
 import Nav from './components/Nav';
 import SearchLogo from './components/SearchLogo';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import './index.css';
 import Drawer from '@mui/material/Drawer';
 import NavSearchInner from 'components/NavSearchInner';
@@ -13,6 +13,9 @@ import { useIsMobile } from 'utils/mobileUtil';
 import SignIn from 'components/ui/SignIn';
 import Submit from 'components/Submit';
 import { getNav } from 'contexts/NavContext';
+// import { Box, Modal, Typography } from '@mui/material';
+// import { BLACK, WHITE } from 'styles/color';
+// import { Link } from 'react-router-dom';
 
 enum HeaderType {
   HEADER_PARENT = 'header-parent',
@@ -59,17 +62,37 @@ const SideMenu = styled(Drawer)`
   z-index: 90;
 `;
 
+// const BoxContainer = styled(Box)`
+//   position: absolute;
+//   top: 50%;
+//   left: 50%;
+//   transform: translate(-50%, -50%);
+//   width: 400;
+//   background-color: ${WHITE};
+//   border: 2px solid ${BLACK};
+//   padding: ${SPACE_10};
+// `;
+
 const App = () => {
   const isMobile = useIsMobile();
   const { show } = getNav();
+
+  // const [open, setOpen] = useState(false);
+  // const handleOpen = () => setOpen(true);
+  // const handleClose = () => setOpen(false);
 
   useEffect(() => {
     if (!isMobile) {
       setSidebarActive(false);
     }
-
     setIsShowing(show);
-  }, [isMobile, show]);
+
+    // setOpen(!open)
+  }, [
+    isMobile,
+    show,
+    //  setOpen
+  ]);
 
   const [isShowing, setIsShowing] = useState<boolean>(false);
   const [sidebarActive, setSidebarActive] = useState<boolean>(false);
@@ -83,6 +106,30 @@ const App = () => {
 
   return (
     <div className="App">
+      {/**
+       * TODO - look in to custom modal
+       */}
+      {/* <div>
+          My Modal
+        </div>
+        <Modal
+          open={open}
+          onClose={() => handleClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <BoxContainer>
+            <Typography id="modal-modal-title" variant="h6" component="h2">
+              Hey!
+              <br/>
+              Thanks for visiting this site.
+            </Typography>
+            <Typography id="modal-modal-description">
+              Just a little FYI, this is just a mockup of the real site, which you can find here:
+              <Link to={`https://podscripts.co/`} target={"_blank"}>https://podscripts.co/</Link>
+            </Typography>
+          </BoxContainer>
+        </Modal> */}
       <Header data-testid={HeaderType.HEADER_PARENT} className="header">
         <SearchLogo />
         <NavContainer>

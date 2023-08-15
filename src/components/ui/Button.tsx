@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { WHITE } from 'styles/color';
 import { SPACE_10, SPACE_20 } from 'styles/spacing';
 

@@ -1,5 +1,4 @@
-import styled from 'styled-components';
-// import { Menu as MenuIcon } from '@mui/icons-material';
+import styled from 'styled-components/macro';
 import Hamburger from 'hamburger-react';
 import { BLUE, WHITE } from 'styles/color';
 import { SPACE_10 } from 'styles/spacing';

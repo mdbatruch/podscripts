@@ -1,19 +1,14 @@
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import PageTitle from './PageTitle';
-import { BLUE, DARK_BLUE, VERY_LIGHT_GREY, WHITE } from 'styles/color';
-import { SPACE_10, SPACE_20, SPACE_40 } from 'styles/spacing';
+import { BLUE, DARK_BLUE, WHITE } from 'styles/color';
+import { SPACE_10, SPACE_20 } from 'styles/spacing';
 import { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { getData } from 'contexts/DataContext';
+import Main from 'components/core/sections/page/MainContent';
 
-/**
- * TODO - Decouple styles as gen component for al pages
- */
 const PodcastsMain = styled.div`
-  background-color: ${VERY_LIGHT_GREY};
-  padding: ${SPACE_40};
-  display: flex;
-  justify-content: center;
+  ${Main};
 `;
 
 const PodCastAlphabetContainer = styled.div`
@@ -60,9 +55,6 @@ const Podcasts = () => {
 
   const { podcasts } = getData();
 
-  /**
-   * TODO - reformat `PodcastList` and set it via Context for all components
-   */
   const PodcastList = useMemo(() => {
     if (!podcasts) return [];
 

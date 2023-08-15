@@ -1,12 +1,11 @@
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import PageTitle from './PageTitle';
 import Podcast from 'components/sections/podcasts/Podcast';
-import { VERY_LIGHT_GREY } from 'styles/color';
-import { SPACE_40 } from 'styles/spacing';
 import { useMemo, useState } from 'react';
 import Subtitle from 'components/core/sections/subtitle/Subtitle';
 import Pagination, { PaginationType } from 'components/ui/Pagination';
 import { getData } from 'contexts/DataContext';
+import Main from 'components/core/sections/page/MainContent';
 
 enum PodcastType {
   PODCAST_PARENT = 'podcast-parent',
@@ -23,8 +22,9 @@ const PodcastParentContainer = styled.div`
 `;
 
 const HomeMain = styled.div`
-  background-color: ${VERY_LIGHT_GREY};
-  padding: ${SPACE_40};
+  ${Main};
+  padding-top: 0px;
+  flex-direction: column;
 `;
 
 const PaginationParent = styled.div`

@@ -3,6 +3,7 @@ import App from './App';
 import { BrowserRouter } from 'react-router-dom';
 import { loadFonts } from 'utils/fontUtil';
 import MainProvider from 'contexts/MainContext';
+import GlobalStyle from 'styles/globalStyles';
 
 const renderApp = () => {
   const container = document.getElementById('root');
@@ -12,6 +13,7 @@ const renderApp = () => {
   root.render(
     <BrowserRouter>
       <MainProvider>
+        <GlobalStyle />
         <App />
       </MainProvider>
     </BrowserRouter>

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import Button from 'components/ui/Button';
 import { memo } from 'react';
 import { Link } from 'react-router-dom';

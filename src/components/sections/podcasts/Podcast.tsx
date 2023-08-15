@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { Link } from 'react-router-dom';
 import { memo } from 'react';
 import { BLUE, DARK_BLUE } from 'styles/color';

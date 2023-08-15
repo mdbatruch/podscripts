@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { memo, useCallback } from 'react';
 import { PaginationUtil, DOTS, PaginationProps } from 'utils/PaginationUtil';
 import { BLACK, BLUE, WHITE } from 'styles/color';

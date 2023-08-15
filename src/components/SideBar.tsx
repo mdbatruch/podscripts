@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import Nav from './Nav';
 
 const SideBarContainer = styled.div`
