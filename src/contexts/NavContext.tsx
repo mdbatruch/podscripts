@@ -10,6 +10,8 @@ import {
 export interface NavContextInterface {
   show: boolean;
   setIsShow: Dispatch<SetStateAction<boolean>>;
+  modalActive: boolean;
+  setModalActive: Dispatch<SetStateAction<boolean>>;
 }
 
 export const NavContext = createContext<NavContextInterface | undefined>(
@@ -22,12 +24,15 @@ interface NavProviderProps {
 
 export const NavProvider = ({ children }: NavProviderProps) => {
   const [show, setIsShow] = useState<boolean>(false);
+  const [modalActive, setModalActive] = useState<boolean>(false);
 
   return (
     <NavContext.Provider
       value={{
         show,
         setIsShow,
+        modalActive,
+        setModalActive
       }}
     >
       {children}

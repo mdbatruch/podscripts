@@ -4,6 +4,7 @@ import { memo } from 'react';
 import { BLUE, DARK_BLUE } from 'styles/color';
 import Button from 'components/ui/Button';
 import { SPACE_10, SPACE_20, SPACE_30 } from 'styles/spacing';
+import { BodyText } from 'components/core/typography/BodyText';
 
 type PodcastProps = {
   title: string;
@@ -92,10 +93,10 @@ const Podcast = ({ title }: PodcastProps) => {
           <PodcastTitle>
             <LinkNoDeco to={`/podcasts/${link}`}>{title}</LinkNoDeco>
           </PodcastTitle>
-          <p>
+          <BodyText>
             If you can never get enough true crime... Congratulations, you've
             found your people.
-          </p>
+          </BodyText>
         </PodcastDescContainer>
       </PodcastContainerInner>
     </PodcastContainer>

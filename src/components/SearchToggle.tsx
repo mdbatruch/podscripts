@@ -3,6 +3,7 @@ import SearchIcon from './ui/icons/SearchIcon';
 import { BLUE, GREY_MAIN, WHITE } from '../styles/color';
 import { SPACE_10, SPACE_20 } from '../styles/spacing';
 import { getNav } from 'contexts/NavContext';
+import { HeaderText } from './core/typography/HeaderText';
 
 const SearchToggleContainer = styled.div`
   color: ${WHITE};
@@ -21,7 +22,7 @@ const SearchToggleContainer = styled.div`
   }
 `;
 
-const SearchText = styled.div`
+const SearchText = styled(HeaderText)`
   padding: 0px ${SPACE_20};
   cursor: pointer;
 `;

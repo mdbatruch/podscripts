@@ -47,6 +47,7 @@ const LinkNoDeco = styled(Link)`
   display: block;
   text-decoration: none;
   color: ${DARK_BLUE};
+  font-size: 1.2rem;
   line-height: 1.5;
 `;
 

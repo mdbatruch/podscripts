@@ -15,6 +15,7 @@ const NavContainer = styled.ul<{ $isMobile?: boolean }>`
 
 const NavLiItem = styled.li<{ $isMobile?: boolean }>`
   list-style: none;
+  font-size: 1.2rem;
   ${({ $isMobile }) =>
     !!$isMobile &&
     `
@@ -29,7 +30,7 @@ interface NavProps {
   mobileTrue?: boolean;
 }
 
-const Nav = ({ mobileTrue, ...props }: NavProps) => {
+const Nav = (props: NavProps) => {
   const isMobile = useIsMobile();
 
   return (

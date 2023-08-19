@@ -108,9 +108,14 @@ const Pagination = ({
           <ChevronLeftIcon height={15} width={15} fill={BLACK} />
         </PaginationListInner>
       </PaginationList>
-      {paginationRange?.map((pageNumber) => {
+      {paginationRange?.map((pageNumber, idx) => {
+
+        /**
+         * TODO - remove `idx` as key value, as it's an anti-pattern - very bad!
+         * Need to add new value to `pageNumber` to prevent duplicate keys.
+         */
         return (
-          <div key={pageNumber}>
+          <div key={idx}>
             {pageNumber === DOTS ? (
               <PaginationList>
                 <PaginationListInnerDots>&#8230;</PaginationListInnerDots>

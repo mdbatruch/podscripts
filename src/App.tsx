@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import PageContent from './PageContent';
 import Nav from './components/Nav';
 import SearchLogo from './components/SearchLogo';
@@ -13,9 +13,7 @@ import { useIsMobile } from 'utils/mobileUtil';
 import SignIn from 'components/ui/SignIn';
 import Submit from 'components/Submit';
 import { getNav } from 'contexts/NavContext';
-// import { Box, Modal, Typography } from '@mui/material';
-// import { BLACK, WHITE } from 'styles/color';
-// import { Link } from 'react-router-dom';
+import WarningModal from 'components/core/navigation/WarningModal';
 
 enum HeaderType {
   HEADER_PARENT = 'header-parent',
@@ -62,24 +60,13 @@ const SideMenu = styled(Drawer)`
   z-index: 90;
 `;
 
-// const BoxContainer = styled(Box)`
-//   position: absolute;
-//   top: 50%;
-//   left: 50%;
-//   transform: translate(-50%, -50%);
-//   width: 400;
-//   background-color: ${WHITE};
-//   border: 2px solid ${BLACK};
-//   padding: ${SPACE_10};
-// `;
-
 const App = () => {
   const isMobile = useIsMobile();
-  const { show } = getNav();
+  const { show, modalActive, setModalActive } = getNav();
 
-  // const [open, setOpen] = useState(false);
-  // const handleOpen = () => setOpen(true);
-  // const handleClose = () => setOpen(false);
+  const lockScroll = useCallback(() => {
+    document.body.style.overflow = 'hidden';
+  }, []);
 
   useEffect(() => {
     if (!isMobile) {
@@ -87,11 +74,14 @@ const App = () => {
     }
     setIsShowing(show);
 
-    // setOpen(!open)
+    setTimeout( () => {
+      setModalActive(!modalActive);
+      lockScroll();
+    }, 2000);
   }, [
     isMobile,
     show,
-    //  setOpen
+    setModalActive
   ]);
 
   const [isShowing, setIsShowing] = useState<boolean>(false);
@@ -106,30 +96,9 @@ const App = () => {
 
   return (
     <div className="App">
-      {/**
-       * TODO - look in to custom modal
-       */}
-      {/* <div>
-          My Modal
-        </div>
-        <Modal
-          open={open}
-          onClose={() => handleClose}
-          aria-labelledby="modal-modal-title"
-          aria-describedby="modal-modal-description"
-        >
-          <BoxContainer>
-            <Typography id="modal-modal-title" variant="h6" component="h2">
-              Hey!
-              <br/>
-              Thanks for visiting this site.
-            </Typography>
-            <Typography id="modal-modal-description">
-              Just a little FYI, this is just a mockup of the real site, which you can find here:
-              <Link to={`https://podscripts.co/`} target={"_blank"}>https://podscripts.co/</Link>
-            </Typography>
-          </BoxContainer>
-        </Modal> */}
+      { modalActive && (
+        <WarningModal modalActive={modalActive}/>
+      )}
       <Header data-testid={HeaderType.HEADER_PARENT} className="header">
         <SearchLogo />
         <NavContainer>
@@ -180,3 +149,4 @@ const App = () => {
 };
 
 export default App;
+

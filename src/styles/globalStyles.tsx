@@ -5,13 +5,8 @@ const GlobalStyle = createGlobalStyle`
     body {
         margin: 0px;
         font-family: 'Quicksand', sans-serif;
-        font-size: 14px;
+        font-size: 12px;
         font-weight: 400;
-    }
-
-    p {
-        font-size: 1.2rem;
-        line-height: 1.5;
     }
 `;
 
