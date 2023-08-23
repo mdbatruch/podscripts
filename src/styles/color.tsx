@@ -1,6 +1,7 @@
 export const WHITE = '#ffffff';
 export const BLACK = '#000000';
 export const BLUE = '#0091ff';
+export const RED = '#d03b34';
 export const DARK_BLUE = '#334e6f';
 export const GREY_MAIN = '#666';
 export const GREY_ACCENT = '#566985';

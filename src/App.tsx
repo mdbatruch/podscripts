@@ -54,15 +54,9 @@ const NavContainer = styled.div`
   }
 `;
 
-const TopMenu = styled(Drawer)``;
-
-const SideMenu = styled(Drawer)`
-  z-index: 90;
-`;
-
 const App = () => {
   const isMobile = useIsMobile();
-  const { show, modalActive, setModalActive } = getNav();
+  const { show, setIsShow, modalActive, setModalActive } = getNav();
 
   const lockScroll = useCallback(() => {
     document.body.style.overflow = 'hidden';
@@ -72,19 +66,21 @@ const App = () => {
     if (!isMobile) {
       setSidebarActive(false);
     }
-    setIsShowing(show);
+    setIsShow(show);
+  }, [
+    isMobile,
+    show
+  ]);
 
+  useEffect(() => {
     setTimeout( () => {
       setModalActive(!modalActive);
       lockScroll();
     }, 2000);
   }, [
-    isMobile,
-    show,
     setModalActive
   ]);
 
-  const [isShowing, setIsShowing] = useState<boolean>(false);
   const [sidebarActive, setSidebarActive] = useState<boolean>(false);
 
   const anchor = 'top';
@@ -106,7 +102,7 @@ const App = () => {
         </NavContainer>
         <SignIn />
         <Submit />
-        <SideMenu
+        <Drawer
           data-testid={HeaderType.SIDE_MENU}
           anchor={anchorLeft}
           open={sidebarActive}
@@ -115,19 +111,19 @@ const App = () => {
           style={{ zIndex: 90 }}
         >
           <SideBar />
-        </SideMenu>
+        </Drawer>
         <ToggleIcon
           sidebarToggle={sidebarToggle}
           sidebarActive={sidebarActive}
         />
       </Header>
       <NavSearch>
-        <TopMenu
+        <Drawer
           data-testid={HeaderType.TOP_MENU}
           anchor={anchor}
-          open={isShowing}
+          open={show}
           elevation={2}
-          onClose={() => setIsShowing(false)}
+          onClose={() => setIsShow(false)}
           style={{ zIndex: 90 }}
           sx={{
             '& .MuiPaper-root': {
@@ -141,7 +137,7 @@ const App = () => {
           }}
         >
           <NavSearchInner />
-        </TopMenu>
+        </Drawer>
       </NavSearch>
       <PageContent />
     </div>

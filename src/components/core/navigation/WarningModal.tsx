@@ -98,7 +98,7 @@ const WarningModal = (props: DialogProps) => {
                     >
                         <h1>Hey!</h1>
                         <BodyText>
-                            Thanks for visiting this site.
+                            Thanks for visiting this site. Like really, thanks.
                         </BodyText>
                         <BodyText>
                             Just a little FYI, this is just a mockup of the real site, which you can find here:

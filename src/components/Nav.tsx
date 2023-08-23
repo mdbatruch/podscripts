@@ -4,6 +4,7 @@ import { TestId } from '../enums/testing';
 import { MenuItems } from 'enums/menuItems';
 import { BLUE } from 'styles/color';
 import { useIsMobile } from 'utils/mobileUtil';
+import { FONT_SIZE_14 } from 'styles/typography';
 
 const NavContainer = styled.ul<{ $isMobile?: boolean }>`
   display: flex;
@@ -15,7 +16,7 @@ const NavContainer = styled.ul<{ $isMobile?: boolean }>`
 
 const NavLiItem = styled.li<{ $isMobile?: boolean }>`
   list-style: none;
-  font-size: 1.2rem;
+  font-size: ${FONT_SIZE_14};
   ${({ $isMobile }) =>
     !!$isMobile &&
     `

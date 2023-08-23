@@ -6,6 +6,7 @@ import { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { getData } from 'contexts/DataContext';
 import Main from 'components/core/sections/page/MainContent';
+import { FONT_SIZE_14 } from 'styles/typography';
 
 const PodcastsMain = styled.div`
   ${Main};
@@ -47,7 +48,7 @@ const LinkNoDeco = styled(Link)`
   display: block;
   text-decoration: none;
   color: ${DARK_BLUE};
-  font-size: 1.2rem;
+  font-size: ${FONT_SIZE_14};
   line-height: 1.5;
 `;
 

@@ -28,7 +28,7 @@ export const NavPageItem = styled(NavLink)<{
       &::before {
         background: ${BLUE};
         border-radius: 4px;
-        bottom: -25px;
+        bottom: -23px;
         content: '';
         display: none;
         height: 4px;
