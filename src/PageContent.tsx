@@ -88,14 +88,15 @@ const PageContent = () => {
                 },
               }}
             >
-              <BodyTextLight
+              <div
                 onClick={() => sidebarToggle()}
                 style={{ textAlign: 'center' }}
               >
-                <h3 style={{ marginTop: '0px' }}>Psst!</h3>
+                <BodyTextLight style={{ marginTop: '0px' }}>Psst!</BodyTextLight>
                 <ShushingFaceIcon height={30} width={30} />
-                <BodyTextSmall>Over here!</BodyTextSmall>
-              </BodyTextLight>
+              </div>
+              <BodyTextSmall
+                style={{ textAlign: 'center' }}>Over here!</BodyTextSmall>
             </Box>
             <Box
                   sx={{

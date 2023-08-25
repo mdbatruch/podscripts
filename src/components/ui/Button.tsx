@@ -3,14 +3,17 @@ import styled from 'styled-components/macro';
 import { WHITE } from 'styles/color';
 import { SPACE_10, SPACE_20 } from 'styles/spacing';
 
-interface ButtonProps {
+export type ButtonType = "button" | "submit" | "reset";
+
+export interface ButtonProps {
   color?: string;
   backgroundColor?: string;
-  label: string;
+  label: string | undefined;
   onClick?: () => void;
   rounded?: boolean;
   icon?: ReactNode | JSX.Element;
   isDisabled?: boolean;
+  type?: ButtonType;
 }
 
 const ButtonWrapper = styled.button<{ rounded: boolean }>`
@@ -43,10 +46,11 @@ const Button = ({
   rounded,
   icon,
   isDisabled,
+  type,
   ...props
 }: ButtonProps) => (
   <ButtonWrapper
-    type="button"
+    type={type}
     className={'secondary'}
     style={{ backgroundColor, color }}
     rounded={rounded!}

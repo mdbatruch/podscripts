@@ -1,27 +1,62 @@
 import styled from 'styled-components/macro';
-import PageTitle from './PageTitle';
 import Main from 'components/core/sections/page/MainContent';
-import { WHITE } from 'styles/color';
-// import { Form } from 'react-router-dom';
+import { BLUE, WHITE } from 'styles/color';
+import Form from 'components/ui/forms/Form';
+import { BodyText } from 'components/core/typography/BodyText';
+import UserIcon from 'components/ui/icons/UserIcon';
+import EnvelopeIcon from 'components/ui/icons/EnvelopeIcon';
+import ChevronRightIcon from 'components/ui/icons/ChevronRightIcon';
 
 const ContactMain = styled.div`
   ${Main};
   background-color: ${WHITE};
-  flex-direction
+  flex-direction: column;
 `;
 
-function Contact() {
-  return (
-    <div>
-      <PageTitle title={'Get in Touch'} />
+const Contact = () => {
 
-      <ContactMain>
-        {/* <Form>
-        <h3>Get In Touch</h3>
-        <h5>Please use this form if you have a suggestion, noticed any bugs or for general inquiries.</h5>
-      </Form> */}
-      </ContactMain>
-    </div>
+
+  return (
+    <ContactMain>
+      <h1>Get In Touch</h1>
+      <BodyText>Please use this form if you have a suggestion, noticed any bugs or for general inquiries.</BodyText>
+      <Form 
+        inputs={[
+          {
+            type: 'text',
+            settings: {
+              name: 'name',
+              placeholder: 'Your Name',
+              icon: <UserIcon height={20} width={20} fill={BLUE} />,
+            }
+          },
+          {
+            type: 'text',
+            settings: {
+              name: 'email',
+              placeholder: 'Email Address',
+              icon: <EnvelopeIcon height={20} width={20} fill={BLUE} />,
+            }
+          },
+          {
+            type: 'textarea',
+            settings: {
+              name: 'message',
+              placeholder: 'Your Message',
+            }
+          },
+          {
+            type: 'submit',
+            settings: {
+              label: 'Send',
+              backgroundColor: BLUE,
+              icon: <ChevronRightIcon height={10} width={10} fill={WHITE} />,
+            }
+          }
+        ]}
+      />
+    </ContactMain>
   );
 }
+
 export default Contact;
