@@ -62,6 +62,7 @@ const Form = ({ inputs }: FormProps) => {
                 return (                    
                     <InputText
                         key={`text-${settings.name}`}
+                        label={settings.label}
                         name={settings.name}
                         placeholder={settings.placeholder}
                         icon={settings.icon}
@@ -89,13 +90,17 @@ const Form = ({ inputs }: FormProps) => {
 
                 const settings = input.settings as ButtonProps;
 
+                console.log('setting', settings);
+
                 return (
                     <Button 
                         key={`button-${settings.label}`}
                         label={settings.label}
                         type={input.type}
                         backgroundColor={BLUE}
-                        icon={<ChevronRightIcon height={10} width={10} fill={WHITE} />}
+                        icon={!!settings.icon ? settings.icon : <ChevronRightIcon height={10} width={10} fill={WHITE} />}
+                        reverse={settings.reverse}
+                        fullWidth={settings.fullWidth}
                     />
                 )
               } else {

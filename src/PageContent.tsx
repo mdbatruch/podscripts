@@ -12,6 +12,7 @@ import Button from 'components/ui/Button';
 import { Link } from 'react-router-dom';
 import ShushingFaceIcon from 'components/ui/icons/ShushingFaceIcon';
 import { SPACE_10, SPACE_80 } from 'styles/spacing';
+import SubmitPodcast from 'SubmitPodcast';
 
 enum DrawerType {
   RIGHT_SIDE_MENU = 'right-side-menu',
@@ -39,6 +40,7 @@ const PageContent = () => {
         <Route path="about" element={<About />} />
         <Route path="contact" element={<Contact />} />
         <Route path="podcasts/:name" element={<PodCastSingle />} />
+        <Route path="submit" element={<SubmitPodcast />} />
       </Routes>
       <Drawer
           data-testid={DrawerType.RIGHT_SIDE_MENU}

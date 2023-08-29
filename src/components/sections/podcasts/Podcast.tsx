@@ -5,6 +5,7 @@ import { BLUE, DARK_BLUE } from 'styles/color';
 import Button from 'components/ui/Button';
 import { SPACE_10, SPACE_20, SPACE_30 } from 'styles/spacing';
 import { BodyText } from 'components/core/typography/BodyText';
+import { FONT_SIZE_14 } from 'styles/typography';
 
 type PodcastProps = {
   title: string;
@@ -31,7 +32,7 @@ const PodcastContainerInner = styled.article`
 `;
 
 const PodcastTitle = styled.h3`
-  font-size: 18px;
+  font-size: ${FONT_SIZE_14};
   font-weight: 600;
   margin-bottom: 10px;
   text-align: left;

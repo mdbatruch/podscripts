@@ -16,7 +16,7 @@ const IconContainer = styled.div`
 `;
 
 const Label = styled.div`
-  color: red;
+  color: ${BLACK};
 `;
 
 const Text = styled.input<{ $hasIcon?: boolean }>`

@@ -50,7 +50,7 @@ const Contact = () => {
             settings: {
               label: 'Send',
               backgroundColor: BLUE,
-              icon: <ChevronRightIcon height={10} width={10} fill={WHITE} />,
+              icon: <ChevronRightIcon height={15} width={15} fill={WHITE} />,
             }
           }
         ]}

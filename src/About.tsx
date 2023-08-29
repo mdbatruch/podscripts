@@ -9,7 +9,7 @@ const AboutMain = styled.div`
 
 const About = () => {
   return (
-    <div>
+    <>
       <PageTitle title={'About PodScripts'} />
       <AboutMain>
         <div>
@@ -52,7 +52,7 @@ const About = () => {
           </BodyText>
         </div>
       </AboutMain>
-    </div>
+    </>
   );
 };
 export default About;

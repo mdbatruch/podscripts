@@ -14,6 +14,7 @@ import SignIn from 'components/ui/SignIn';
 import Submit from 'components/Submit';
 import { getNav } from 'contexts/NavContext';
 import WarningModal from 'components/core/navigation/WarningModal';
+import Footer from 'components/core/sections/footer/Footer';
 
 enum HeaderType {
   HEADER_PARENT = 'header-parent',
@@ -74,7 +75,7 @@ const App = () => {
 
   useEffect(() => {
     setTimeout( () => {
-      setModalActive(!modalActive);
+      setModalActive(prevModalActive => !modalActive);
       lockScroll();
     }, 2000);
   }, [
@@ -86,9 +87,9 @@ const App = () => {
   const anchor = 'top';
   const anchorLeft = 'left';
 
-  const sidebarToggle = () => {
+  const sidebarToggle = useCallback(() => {
     setSidebarActive(!sidebarActive);
-  };
+  }, [sidebarActive]);
 
   return (
     <div className="App">
@@ -140,6 +141,7 @@ const App = () => {
         </Drawer>
       </NavSearch>
       <PageContent />
+      <Footer />
     </div>
   );
 };
