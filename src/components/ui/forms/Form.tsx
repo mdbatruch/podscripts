@@ -1,14 +1,13 @@
-import { useState, FormEvent, ChangeEvent, useMemo } from "react";
-import { BLUE, WHITE } from "styles/color";
+import { ChangeEvent, FormEvent, useMemo, useState } from "react";
+import { BLUE } from "styles/color";
 import Button, { ButtonProps, ButtonType } from "../Button";
-import ChevronRightIcon from "../icons/ChevronRightIcon";
 import InputText, { InputTextProps } from "./InputText";
 import InputTextArea, { InputTextAreaProps } from "./InputTextArea";
 
 /**
  * TODO - add input types
  */
-type FormInputs = 'text' | 'textarea';
+type FormInputs = 'text' | 'textarea' | 'password';
 
 type FormConfig = { type: FormInputs | ButtonType; settings: InputTextProps | InputTextAreaProps | ButtonProps}
 
@@ -55,13 +54,16 @@ const Form = ({ inputs }: FormProps) => {
          * TODO - clean this up
          */
         return inputs.map(input => {
-            if (input.type === 'text') {
+
+            console.log('type', input.type)
+            if (input.type === 'text' || input.type == 'password') {
                 
                 const settings = input.settings as InputTextProps;
 
                 return (                    
                     <InputText
                         key={`text-${settings.name}`}
+                        type={input.type}
                         label={settings.label}
                         name={settings.name}
                         placeholder={settings.placeholder}
@@ -95,10 +97,10 @@ const Form = ({ inputs }: FormProps) => {
                 return (
                     <Button 
                         key={`button-${settings.label}`}
-                        label={settings.label}
                         type={input.type}
+                        label={settings.label}
                         backgroundColor={BLUE}
-                        icon={!!settings.icon ? settings.icon : <ChevronRightIcon height={10} width={10} fill={WHITE} />}
+                        icon={!!settings.icon ? settings.icon : null}
                         reverse={settings.reverse}
                         fullWidth={settings.fullWidth}
                     />

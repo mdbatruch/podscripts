@@ -1,10 +1,10 @@
-import styled from 'styled-components/macro';
 import { memo, useCallback } from 'react';
-import { PaginationUtil, DOTS, PaginationProps } from 'utils/PaginationUtil';
+import styled from 'styled-components/macro';
 import { BLACK, BLUE, WHITE } from 'styles/color';
-import ChevronRightIcon from './icons/ChevronRightIcon';
-import ChevronLeftIcon from './icons/ChevronLeftIcon';
 import { SPACE_20 } from 'styles/spacing';
+import { DOTS, PaginationProps, PaginationUtil } from 'utils/PaginationUtil';
+import ChevronLeftIcon from './icons/ChevronLeftIcon';
+import ChevronRightIcon from './icons/ChevronRightIcon';
 
 export enum PaginationType {
   PAGINATION_PARENT = 'pagination-parent',

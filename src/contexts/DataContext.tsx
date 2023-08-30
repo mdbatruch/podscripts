@@ -1,5 +1,5 @@
-import { ReactNode, createContext, useContext, useState } from 'react';
 import PODCASTS from 'mocks/PODCASTS.json';
+import { createContext, ReactNode, useContext, useState } from 'react';
 
 interface PodcastType {
   id: number;

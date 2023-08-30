@@ -1,9 +1,9 @@
-import { UIEvent, ReactNode } from 'react';
-import styled from 'styled-components/macro';
-import PodScriptsLogo from './ui/icons/logos/PodScriptsLogo';
-import SearchToggle from './SearchToggle';
+import { ReactNode, UIEvent } from 'react';
 import { Link } from 'react-router-dom';
+import styled from 'styled-components/macro';
 import { SPACE_20 } from 'styles/spacing';
+import SearchToggle from './SearchToggle';
+import PodScriptsLogo from './ui/icons/logos/PodScriptsLogo';
 
 const SearchContainer = styled.div`
   padding: ${SPACE_20} 0;

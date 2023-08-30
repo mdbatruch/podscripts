@@ -1,14 +1,14 @@
-import styled from 'styled-components/macro';
-import Form from 'components/ui/forms/Form';
-import { BLUE, GREY_DARK, LIGHT_GREY, WHITE } from 'styles/color';
-import { SPACE_10, SPACE_20, SPACE_40 } from 'styles/spacing';
-import { BodyTextSmall, BodyTextLight } from 'components/core/typography/BodyText';
+import { BodyTextLight, BodyTextSmall } from 'components/core/typography/BodyText';
 import { H3Title } from 'components/core/typography/Title';
+import SearchLogo from 'components/SearchLogo';
+import Form from 'components/ui/forms/Form';
 import RSSIcon from 'components/ui/icons/RSSIcon';
+import TwitterIcon from 'components/ui/icons/TwitterIcon';
 import { MenuItems } from 'enums/menuItems';
 import { NavLink } from 'react-router-dom';
-import SearchLogo from 'components/SearchLogo';
-import TwitterIcon from 'components/ui/icons/TwitterIcon';
+import styled from 'styled-components/macro';
+import { BLUE, GREY_DARK, LIGHT_GREY, WHITE } from 'styles/color';
+import { SPACE_10, SPACE_20, SPACE_40 } from 'styles/spacing';
 
 const FooterMain = styled.div`
   background: #333;

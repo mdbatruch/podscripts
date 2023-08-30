@@ -34,6 +34,7 @@ const Text = styled.input<{ $hasIcon?: boolean }>`
 `;
 
 export interface InputTextProps {
+  type?: string;
   label?: string;
   placeholder: string;
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
@@ -43,6 +44,7 @@ export interface InputTextProps {
 }
 
 export const InputText = ({
+  type,
   label,
   placeholder,
   name,
@@ -53,7 +55,7 @@ export const InputText = ({
     <InputTextContainer>
       {!!icon && <IconContainer>{icon}</IconContainer>}
       {label && <Label>{label}</Label>}
-      <Text type="text" name={name} placeholder={placeholder} onChange={onChange} $hasIcon={!!icon} />
+      <Text type={type} name={name} placeholder={placeholder} onChange={onChange} $hasIcon={!!icon} />
     </InputTextContainer>
   );
 };

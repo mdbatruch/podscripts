@@ -1,11 +1,11 @@
-import { NavPageItem } from './core/navigation/NavPageItem';
-import styled from 'styled-components/macro';
-import { TestId } from '../enums/testing';
 import { MenuItems } from 'enums/menuItems';
-import { BLUE } from 'styles/color';
-import { useIsMobile } from 'utils/mobileUtil';
-import { FONT_SIZE_14 } from 'styles/typography';
 import { Link } from 'react-router-dom';
+import styled from 'styled-components/macro';
+import { BLUE } from 'styles/color';
+import { FONT_SIZE_14 } from 'styles/typography';
+import { useIsMobile } from 'utils/mobileUtil';
+import { TestId } from '../enums/testing';
+import { NavPageItem } from './core/navigation/NavPageItem';
 
 const NavContainer = styled.ul<{ $isMobile?: boolean }>`
   display: flex;

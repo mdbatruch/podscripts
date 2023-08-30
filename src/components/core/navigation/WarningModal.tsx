@@ -1,13 +1,12 @@
-// import { useMemo } from 'react';
-import styled from 'styled-components/macro';
-import { BLUE, WHITE } from 'styles/color';
-import { getNav } from 'contexts/NavContext';
-import { Link } from 'react-router-dom';
-import { SPACE_10, SPACE_20 } from 'styles/spacing';
 import Button from 'components/ui/Button';
+import { getNav } from 'contexts/NavContext';
 import { useCallback } from 'react';
-import { BodyText } from '../typography/BodyText';
+import { Link } from 'react-router-dom';
+import styled from 'styled-components/macro';
 import { fadeInOut } from 'styles/animations';
+import { BLUE, WHITE } from 'styles/color';
+import { SPACE_10, SPACE_20 } from 'styles/spacing';
+import { BodyText } from '../typography/BodyText';
 
 const ModalContent = styled.div`
     height: 100%;

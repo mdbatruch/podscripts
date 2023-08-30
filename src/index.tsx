@@ -1,9 +1,9 @@
-import { createRoot } from 'react-dom/client';
-import App from './App';
-import { BrowserRouter } from 'react-router-dom';
-import { loadFonts } from 'utils/fontUtil';
 import MainProvider from 'contexts/MainContext';
+import { createRoot } from 'react-dom/client';
+import { BrowserRouter } from 'react-router-dom';
 import GlobalStyle from 'styles/globalStyles';
+import { loadFonts } from 'utils/fontUtil';
+import App from './App';
 
 const renderApp = () => {
   const container = document.getElementById('root');

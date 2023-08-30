@@ -1,10 +1,10 @@
-import styled from 'styled-components/macro';
-import { Link } from 'react-router-dom';
-import { memo } from 'react';
-import { BLUE, DARK_BLUE } from 'styles/color';
-import Button from 'components/ui/Button';
-import { SPACE_10, SPACE_20, SPACE_30 } from 'styles/spacing';
 import { BodyText } from 'components/core/typography/BodyText';
+import Button from 'components/ui/Button';
+import { memo } from 'react';
+import { Link } from 'react-router-dom';
+import styled from 'styled-components/macro';
+import { BLUE, DARK_BLUE } from 'styles/color';
+import { SPACE_10, SPACE_20, SPACE_30 } from 'styles/spacing';
 import { FONT_SIZE_14 } from 'styles/typography';
 
 type PodcastProps = {

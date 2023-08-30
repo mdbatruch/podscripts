@@ -1,5 +1,5 @@
-import styled from 'styled-components/macro';
 import Hamburger from 'hamburger-react';
+import styled from 'styled-components/macro';
 import { BLUE, WHITE } from 'styles/color';
 import { SPACE_10 } from 'styles/spacing';
 

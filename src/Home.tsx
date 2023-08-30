@@ -1,11 +1,11 @@
-import styled from 'styled-components/macro';
-import PageTitle from './PageTitle';
-import Podcast from 'components/sections/podcasts/Podcast';
-import { useMemo, useState } from 'react';
+import Main from 'components/core/sections/page/MainContent';
 import Subtitle from 'components/core/sections/subtitle/Subtitle';
+import Podcast from 'components/sections/podcasts/Podcast';
 import Pagination, { PaginationType } from 'components/ui/Pagination';
 import { getData } from 'contexts/DataContext';
-import Main from 'components/core/sections/page/MainContent';
+import { useMemo, useState } from 'react';
+import styled from 'styled-components/macro';
+import PageTitle from './PageTitle';
 
 enum PodcastType {
   PODCAST_PARENT = 'podcast-parent',

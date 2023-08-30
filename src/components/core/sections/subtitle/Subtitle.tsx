@@ -1,7 +1,7 @@
-import styled from 'styled-components/macro';
 import Button from 'components/ui/Button';
 import { memo } from 'react';
 import { Link } from 'react-router-dom';
+import styled from 'styled-components/macro';
 import { BLUE, GREY_ACCENT } from 'styles/color';
 import { SPACE_20 } from 'styles/spacing';
 

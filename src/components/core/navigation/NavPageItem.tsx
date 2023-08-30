@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components/macro';
-import { BLUE, WHITE } from '../../../styles/color';
 import { SPACE_20 } from 'styles/spacing';
+import { BLUE, WHITE } from '../../../styles/color';
 
 export const NavPageItem = styled(NavLink)<{
   $isMobile?: boolean;

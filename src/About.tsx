@@ -1,7 +1,7 @@
-import styled from 'styled-components/macro';
-import PageTitle from './PageTitle';
 import Main from 'components/core/sections/page/MainContent';
 import { BodyText } from 'components/core/typography/BodyText';
+import styled from 'styled-components/macro';
+import PageTitle from './PageTitle';
 
 const AboutMain = styled.div`
   ${Main};

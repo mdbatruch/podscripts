@@ -1,20 +1,20 @@
-import { useCallback, useEffect, useState } from 'react';
-import PageContent from './PageContent';
-import Nav from './components/Nav';
-import SearchLogo from './components/SearchLogo';
-import styled from 'styled-components/macro';
-import './index.css';
 import Drawer from '@mui/material/Drawer';
-import NavSearchInner from 'components/NavSearchInner';
-import SideBar from 'components/SideBar';
 import ToggleIcon from 'components/core/navigation/ToggleIcon';
-import { SPACE_20 } from 'styles/spacing';
-import { useIsMobile } from 'utils/mobileUtil';
-import SignIn from 'components/ui/SignIn';
-import Submit from 'components/Submit';
-import { getNav } from 'contexts/NavContext';
 import WarningModal from 'components/core/navigation/WarningModal';
 import Footer from 'components/core/sections/footer/Footer';
+import NavSearchInner from 'components/NavSearchInner';
+import SideBar from 'components/SideBar';
+import Submit from 'components/Submit';
+import SignInButton from 'components/ui/SignInButton';
+import { getNav } from 'contexts/NavContext';
+import { useCallback, useEffect, useState } from 'react';
+import styled from 'styled-components/macro';
+import { SPACE_20 } from 'styles/spacing';
+import { useIsMobile } from 'utils/mobileUtil';
+import Nav from './components/Nav';
+import SearchLogo from './components/SearchLogo';
+import PageContent from './PageContent';
+import './index.css';
 
 enum HeaderType {
   HEADER_PARENT = 'header-parent',
@@ -57,11 +57,11 @@ const NavContainer = styled.div`
 
 const App = () => {
   const isMobile = useIsMobile();
-  const { show, setIsShow, modalActive, setModalActive } = getNav();
+  const { show, setIsShow, modalActive } = getNav();
 
-  const lockScroll = useCallback(() => {
-    document.body.style.overflow = 'hidden';
-  }, []);
+  // const lockScroll = useCallback(() => {
+  //   document.body.style.overflow = 'hidden';
+  // }, []);
 
   useEffect(() => {
     if (!isMobile) {
@@ -73,14 +73,14 @@ const App = () => {
     show
   ]);
 
-  useEffect(() => {
-    setTimeout( () => {
-      setModalActive(prevModalActive => !modalActive);
-      lockScroll();
-    }, 2000);
-  }, [
-    setModalActive
-  ]);
+  // useEffect(() => {
+  //   setTimeout( () => {
+  //     setModalActive(prevModalActive => !modalActive);
+  //     lockScroll();
+  //   }, 2000);
+  // }, [
+  //   setModalActive
+  // ]);
 
   const [sidebarActive, setSidebarActive] = useState<boolean>(false);
 
@@ -101,7 +101,7 @@ const App = () => {
         <NavContainer>
           <Nav mobileTrue={false} />
         </NavContainer>
-        <SignIn />
+        <SignInButton />
         <Submit />
         <Drawer
           data-testid={HeaderType.SIDE_MENU}

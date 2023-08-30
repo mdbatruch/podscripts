@@ -1,14 +1,14 @@
-import styled from 'styled-components/macro';
-import PageTitle from './PageTitle';
-import { BLUE, DARK_BLUE, WHITE } from 'styles/color';
-import { SPACE_10, SPACE_20 } from 'styles/spacing';
+import Main from 'components/core/sections/page/MainContent';
+import { getData } from 'contexts/DataContext';
 import { useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import { getData } from 'contexts/DataContext';
-import Main from 'components/core/sections/page/MainContent';
+import styled from 'styled-components/macro';
+import { BLUE, DARK_BLUE, WHITE } from 'styles/color';
+import { SPACE_10, SPACE_20 } from 'styles/spacing';
 import { FONT_SIZE_14 } from 'styles/typography';
+import PageTitle from './PageTitle';
 
-const PodcastsMain = styled.div`
+const PodcastsWrapper = styled.div`
   ${Main};
 `;
 
@@ -103,7 +103,7 @@ const Podcasts = () => {
     <div>
       <PageTitle title={'Browse all Podcasts'} />
 
-      <PodcastsMain>{PodcastList}</PodcastsMain>
+      <PodcastsWrapper>{PodcastList}</PodcastsWrapper>
     </div>
   );
 };

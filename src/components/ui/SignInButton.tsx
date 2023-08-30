@@ -1,9 +1,9 @@
 import { HeaderText } from 'components/core/typography/HeaderText';
-import DoorIcon from './icons/DoorIcon';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components/macro';
-import { WHITE, BLUE } from 'styles/color';
+import { BLUE, WHITE } from 'styles/color';
 import { SPACE_20 } from 'styles/spacing';
+import DoorIcon from './icons/DoorIcon';
 
 export const SignInContainer = styled(Link)`
   display: flex;
@@ -26,7 +26,7 @@ export const SignInContainer = styled(Link)`
   }
 `;
 
-const SignIn = () => {
+const SignInButton = () => {
   return (
     <SignInContainer to="/loginregister">
       <DoorIcon height={20} width={20} />
@@ -35,4 +35,4 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+export default SignInButton;
