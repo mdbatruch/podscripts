@@ -13,7 +13,7 @@ import InputText from './ui/forms/InputText';
 
 export interface PodcastItemProps {
   id: number;
-  podcast_title: string;
+  title: string;
 }
 
 const InnerForm = styled.div`
@@ -97,7 +97,7 @@ const NavSearchInner = () => {
 
       const filteredList = podcasts.filter((item) => {
         return (
-          item.podcast_title
+          item.title
             .toLowerCase()
             .indexOf(target.value.toLowerCase()) !== -1
         );
@@ -127,7 +127,7 @@ const NavSearchInner = () => {
                 /**
                  * TODO - move to formatUtil
                  */
-                const link = item.podcast_title
+                const link = item.title
                   .toLocaleLowerCase()
                   .replaceAll(' ', '_');
 
@@ -138,7 +138,7 @@ const NavSearchInner = () => {
                       style={{ textDecoration: 'none' }}
                       onClick={() => setIsShow(!show)}
                     >
-                      {item.podcast_title}
+                      {item.title}
                     </Link>
                   </PodcastItems>
                 );

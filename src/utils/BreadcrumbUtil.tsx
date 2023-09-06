@@ -2,8 +2,12 @@ import { useMemo } from 'react';
 import { Link, useLocation } from 'react-router-dom'
 import styled from 'styled-components/macro';
 import { BLUE, WHITE } from 'styles/color';
-import { SPACE_20 } from 'styles/spacing';
+import { SPACE_20, SPACE_40 } from 'styles/spacing';
 
+export const BreadcrumbsTopWrapper = styled.div`
+    max-width: 1304px;
+    margin: ${SPACE_40} auto ${SPACE_20};
+`;
 
 const BreadCrumbWrapper = styled.div`
   background-color: ${BLUE};

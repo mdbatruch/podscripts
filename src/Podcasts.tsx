@@ -10,6 +10,7 @@ import PageTitle from './PageTitle';
 
 const PodcastsWrapper = styled.div`
   ${Main};
+  background-color: ${WHITE};
 `;
 
 const PodCastAlphabetContainer = styled.div`
@@ -74,18 +75,18 @@ const Podcasts = () => {
                      */
                     podcasts
                       .filter((item) =>
-                        item.podcast_title.startsWith(letter.toUpperCase())
+                        item.title.startsWith(letter.toUpperCase())
                       )
                       .map((item, idx) => {
                         /**
                          * TODO - move to formatUtil
                          */
-                        const link = item.podcast_title
+                        const link = item.title
                           .toLocaleLowerCase()
                           .replaceAll(' ', '_');
                         return (
                           <LinkNoDeco key={item.id} to={`/podcasts/${link}`}>
-                            {item.podcast_title}
+                            {item.title}
                           </LinkNoDeco>
                         );
                       })

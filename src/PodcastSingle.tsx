@@ -1,23 +1,30 @@
 import Main from 'components/core/sections/page/MainContent';
+import Podcast, { PodcastParentContainer, PodcastType } from 'components/sections/podcasts/Podcast';
+import Pagination from 'components/ui/Pagination';
+import { PaginationType } from 'components/ui/Pagination';
+import { getData } from 'contexts/DataContext';
+import { useMemo, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components/macro';
 import { BLUE, WHITE } from 'styles/color';
-import { SPACE_20, SPACE_40 } from 'styles/spacing';
-import BreadCrumbs, { formatPagePath } from 'utils/BreadcrumbUtil';
+import { SPACE_40 } from 'styles/spacing';
+import BreadCrumbs, { BreadcrumbsTopWrapper, formatPagePath } from 'utils/BreadcrumbUtil';
+import { PaginationParent } from 'utils/PaginationUtil';
 
 const PodcastSingleWrapper = styled.div`
     ${Main};
-    flex-direction: column;
-`;
-
-const PodcastSingleMain = styled.div`
     background-color: ${WHITE};
     flex-direction: column;
-    padding: ${SPACE_40};
-    margin-top: ${SPACE_20};
+    margin-bottom: ${SPACE_40};
 `;
 
-const PodcastSingleTitle = styled.h1`
+const PodcastSingleHeader = styled.div`
+    background-color: ${WHITE};
+    flex-direction: column;
+    padding: 0 ${SPACE_40} ${SPACE_40};
+`;
+
+const Title = styled.h1`
   position: relative;
   &::before {
       background: ${BLUE};
@@ -34,18 +41,67 @@ const PodcastSingleTitle = styled.h1`
 }
 `;
 
-const PodCastSingle = () => {
-  const { name } = useParams();
+const ListContainer = styled(PodcastParentContainer)`
+  background-color: ${WHITE};
+`;
 
-  const newItem = formatPagePath(name);
+
+const PodCastSingle = () => {
+  const PageSize = 9;
+  const { name } = useParams();
+  const { episodes } = getData();
+  const [currentPage, setCurrentPage] = useState<number>(1);
+
+  const newItem = useMemo(() => formatPagePath(name), [name]);
+
+  const matchingPodcasts = useMemo(() => { return episodes.filter(item => item.series?.includes(newItem)) }, [episodes, newItem]);
+
+  const currentTableData = useMemo(() => {
+    const firstPageIndex = (currentPage - 1) * PageSize;
+    const lastPageIndex = firstPageIndex + PageSize;
+    return matchingPodcasts.slice(firstPageIndex, lastPageIndex);
+  }, [currentPage]);
+
+  /**
+   * TODO - reformat `PodcastList` and set it via Context for all components
+   */
+  const PodcastList = useMemo(() => {
+    if (!currentTableData) return [];
+
+    if (currentTableData) {
+      return (
+        <>
+          {currentTableData.map((item) => {
+            return <Podcast key={item.id} title={item.title} description={item.description} url={item.episode_url_slug} />;
+          })}
+        </>
+      );
+    }
+  }, [currentTableData]);
 
   return (
-    <PodcastSingleWrapper>
-      <BreadCrumbs />
-      <PodcastSingleMain>
-        <PodcastSingleTitle>{newItem}</PodcastSingleTitle>
-      </PodcastSingleMain>
-    </PodcastSingleWrapper>
+    <>
+      <BreadcrumbsTopWrapper>
+        <BreadCrumbs />
+      </BreadcrumbsTopWrapper>
+      <PodcastSingleWrapper>
+        <PodcastSingleHeader>
+          <Title>{newItem}</Title>
+        </PodcastSingleHeader>
+        <ListContainer data-testid={PodcastType.PODCAST_PARENT}>
+            {PodcastList}
+        </ListContainer>
+        <PaginationParent data-testid={PaginationType.PAGINATION_PARENT}>
+              <Pagination
+                className={`pagination-bar`}
+                currentPage={currentPage}
+                totalCount={matchingPodcasts.length}
+                pageSize={PageSize}
+                onPageChange={(page: number) => setCurrentPage(page)}
+              />
+            </PaginationParent>
+      </PodcastSingleWrapper>
+    </>
   );
 }
 export default PodCastSingle;

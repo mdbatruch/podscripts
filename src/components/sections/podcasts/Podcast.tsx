@@ -12,8 +12,22 @@ type PodcastProps = {
   category?: string;
   description?: string;
   episodeCount?: number;
-  imageUrl?: string;
+  url?: string;
 };
+
+export enum PodcastType {
+  PODCAST_PARENT = 'podcast-parent',
+}
+
+export const PodcastParentContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  max-width: 1224px;
+  padding: 0;
+  position: relative;
+  z-index: 5;
+`;
 
 const PodcastContainer = styled.div`
   display: inline-block;
@@ -74,8 +88,11 @@ const LinkNoDeco = styled(Link)`
   color: ${DARK_BLUE};
 `;
 
-const Podcast = ({ title }: PodcastProps) => {
+const Podcast = ({ title, description, url }: PodcastProps) => {
+
+  // TODO - fix link
   const link = title.toLocaleLowerCase().replaceAll(' ', '_');
+
   return (
     <PodcastContainer>
       <PodcastContainerInner>
@@ -92,11 +109,10 @@ const Podcast = ({ title }: PodcastProps) => {
             <Button label={'Category'} backgroundColor={BLUE} rounded={false} />
           </CategoryContainer>
           <PodcastTitle>
-            <LinkNoDeco to={`/podcasts/${link}`}>{title}</LinkNoDeco>
+            <LinkNoDeco to={link}>{title}</LinkNoDeco>
           </PodcastTitle>
           <BodyText>
-            If you can never get enough true crime... Congratulations, you've
-            found your people.
+            {description}
           </BodyText>
         </PodcastDescContainer>
       </PodcastContainerInner>

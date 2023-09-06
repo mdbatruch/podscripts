@@ -1,5 +1,11 @@
 import { useMemo } from 'react';
+import styled from 'styled-components/macro';
 
+export const PaginationParent = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 100%;
+`;
 export interface PaginationProps {
   onPageChange: (item: number) => void;
   totalCount: number;

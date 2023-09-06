@@ -7,6 +7,7 @@ const GlobalStyle = createGlobalStyle`
         font-family: 'Quicksand', sans-serif;
         font-size: 12px;
         font-weight: 400;
+        background: #f9f9f9;
     }
 `;
 

@@ -1,17 +1,19 @@
 import Main from 'components/core/sections/page/MainContent';
 import { BodyText } from 'components/core/typography/BodyText';
 import styled from 'styled-components/macro';
+import { WHITE } from 'styles/color';
 import PageTitle from './PageTitle';
 
-const AboutMain = styled.div`
+const AboutWrapper = styled.div`
   ${Main};
+  background-color: ${WHITE};
 `;
 
 const About = () => {
   return (
     <>
       <PageTitle title={'About PodScripts'} />
-      <AboutMain>
+      <AboutWrapper>
         <div>
           <BodyText>
             PodScripts is dedicated to providing transcriptions for a wide
@@ -51,7 +53,7 @@ const About = () => {
             and help users to get the most out of their favorite podcasts.
           </BodyText>
         </div>
-      </AboutMain>
+      </AboutWrapper>
     </>
   );
 };

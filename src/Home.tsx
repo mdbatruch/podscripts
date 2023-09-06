@@ -1,42 +1,25 @@
 import Main from 'components/core/sections/page/MainContent';
 import Subtitle from 'components/core/sections/subtitle/Subtitle';
-import Podcast from 'components/sections/podcasts/Podcast';
+import Podcast, { PodcastParentContainer, PodcastType } from 'components/sections/podcasts/Podcast';
 import Pagination, { PaginationType } from 'components/ui/Pagination';
 import { getData } from 'contexts/DataContext';
 import { useMemo, useState } from 'react';
 import styled from 'styled-components/macro';
+import { WHITE } from 'styles/color';
+import { PaginationParent } from 'utils/PaginationUtil';
 import PageTitle from './PageTitle';
-
-enum PodcastType {
-  PODCAST_PARENT = 'podcast-parent',
-}
-
-const PodcastParentContainer = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  margin: 0 auto;
-  max-width: 1224px;
-  padding: 0;
-  position: relative;
-  z-index: 5;
-`;
 
 const HomeMain = styled.div`
   ${Main};
   padding-top: 0px;
   flex-direction: column;
+  background-color: ${WHITE};
 `;
 
-const PaginationParent = styled.div`
-  display: flex;
-  justify-content: center;
-  width: 100%;
-`;
-
-function Home() {
+const Home = () => {
   const PageSize = 15;
 
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState<number>(1);
   const { podcasts } = getData();
 
   const currentTableData = useMemo(() => {
@@ -50,12 +33,12 @@ function Home() {
    */
   const PodcastList = useMemo(() => {
     if (!currentTableData) return [];
-
+  
     if (currentTableData) {
       return (
         <>
           {currentTableData.map((item) => {
-            return <Podcast key={item.id} title={item.podcast_title} />;
+            return <Podcast key={item.id} title={item.title} />;
           })}
         </>
       );
