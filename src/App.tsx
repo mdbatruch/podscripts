@@ -3,6 +3,7 @@ import ToggleIcon from 'components/core/navigation/ToggleIcon';
 import WarningModal from 'components/core/navigation/WarningModal';
 import Footer from 'components/core/sections/footer/Footer';
 import NavSearchInner from 'components/NavSearchInner';
+import RoutesComponent from 'components/routes/Routes';
 import SideBar from 'components/SideBar';
 import Submit from 'components/Submit';
 import SignInButton from 'components/ui/SignInButton';
@@ -11,6 +12,7 @@ import { useCallback, useEffect, useState } from 'react';
 import styled from 'styled-components/macro';
 import { SPACE_20 } from 'styles/spacing';
 import { useIsMobile } from 'utils/mobileUtil';
+import ScrollToTop from 'utils/ScrollToTop';
 import Nav from './components/Nav';
 import SearchLogo from './components/SearchLogo';
 import PageContent from './PageContent';
@@ -57,11 +59,11 @@ const NavContainer = styled.div`
 
 const App = () => {
   const isMobile = useIsMobile();
-  const { show, setIsShow, modalActive } = getNav();
+  const { show, setIsShow, modalActive, setModalActive } = getNav();
 
-  // const lockScroll = useCallback(() => {
-  //   document.body.style.overflow = 'hidden';
-  // }, []);
+  const lockScroll = useCallback(() => {
+    document.body.style.overflow = 'hidden';
+  }, []);
 
   useEffect(() => {
     if (!isMobile) {
@@ -73,14 +75,14 @@ const App = () => {
     show
   ]);
 
-  // useEffect(() => {
-  //   setTimeout( () => {
-  //     setModalActive(prevModalActive => !modalActive);
-  //     lockScroll();
-  //   }, 2000);
-  // }, [
-  //   setModalActive
-  // ]);
+  useEffect(() => {
+    setTimeout( () => {
+      setModalActive(prevModalActive => !modalActive);
+      lockScroll();
+    }, 2000);
+  }, [
+    setModalActive
+  ]);
 
   const [sidebarActive, setSidebarActive] = useState<boolean>(false);
 
@@ -93,6 +95,7 @@ const App = () => {
 
   return (
     <div className="App">
+      <ScrollToTop />
       { modalActive && (
         <WarningModal modalActive={modalActive}/>
       )}
@@ -140,6 +143,7 @@ const App = () => {
           <NavSearchInner />
         </Drawer>
       </NavSearch>
+      <RoutesComponent />
       <PageContent />
       <Footer />
     </div>

@@ -1,7 +1,7 @@
-import EPISODE from 'mocks/podcasts/my-favourite-murder.json';
-import STUFF from 'mocks/podcasts/red-scare.json';
-import HI from 'mocks/podcasts/the-adam-friedland-show.json';
-import HELLO from 'mocks/podcasts/this-past-weekend.json';
+import MURDER from 'mocks/podcasts/my-favourite-murder.json';
+import SCARE from 'mocks/podcasts/red-scare.json';
+import FRIEDLAND from 'mocks/podcasts/the-adam-friedland-show.json';
+import WEEKEND from 'mocks/podcasts/this-past-weekend.json';
 import PODCASTS from 'mocks/PODCASTS.json';
 import { createContext, ReactNode, useContext, useState } from 'react';
 
@@ -41,7 +41,7 @@ interface DataProviderProps {
 }
 
 export const DataProvider = ({ children }: DataProviderProps) => {
-  const combinedEpisodes = [...EPISODE as PodcastType[], ...STUFF as PodcastType[], ...HELLO as PodcastType[], ...HI as PodcastType[]];
+  const combinedEpisodes = [...MURDER as PodcastType[], ...SCARE as PodcastType[], ...FRIEDLAND as PodcastType[], ...WEEKEND as PodcastType[]];
   const [podcasts] = useState<PodcastType[]>(PODCASTS);
   const [episodes] = useState<PodcastType[]>(combinedEpisodes);
 

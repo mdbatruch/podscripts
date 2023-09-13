@@ -42,7 +42,8 @@ const LinkNoDeco = styled(Link)`
 export const formatPagePath = (item: string | undefined): string => {
     if (!item) return '';
 
-    const format = item?.split('_')
+    const format = item?.replace(/[\d-]+/g, '')
+    .split('_')
     .map(path =>
         path.charAt(0).toUpperCase() + path.slice(1)
         )

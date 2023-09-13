@@ -1,15 +1,12 @@
-import Main from 'components/core/sections/page/MainContent';
-import Podcast, { PodcastParentContainer, PodcastType } from 'components/sections/podcasts/Podcast';
-import Pagination from 'components/ui/Pagination';
-import { PaginationType } from 'components/ui/Pagination';
-import { getData } from 'contexts/DataContext';
-import { useMemo, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import styled from 'styled-components/macro';
-import { BLUE, WHITE } from 'styles/color';
-import { SPACE_40 } from 'styles/spacing';
-import BreadCrumbs, { BreadcrumbsTopWrapper, formatPagePath } from 'utils/BreadcrumbUtil';
-import { PaginationParent } from 'utils/PaginationUtil';
+import { Tab, Tabs } from "@mui/material";
+import Main from "components/core/sections/page/MainContent";
+import { getData } from "contexts/DataContext";
+import { ReactNode, SyntheticEvent, useCallback, useMemo, useState } from "react";
+import { useParams } from "react-router-dom";
+import styled from "styled-components";
+import { DARK_BLUE, WHITE } from "styles/color";
+import { SPACE_40 } from "styles/spacing";
+import BreadCrumbs, { BreadcrumbsTopWrapper, formatPagePath } from "utils/BreadcrumbUtil";
 
 const PodcastSingleWrapper = styled.div`
     ${Main};
@@ -25,60 +22,53 @@ const PodcastSingleHeader = styled.div`
 `;
 
 const Title = styled.h1`
-  position: relative;
-  &::before {
-      background: ${BLUE};
-      border-radius: 4px;
-      bottom: -13px;
-      content: '';
-      height: 4px;
-      left: 0;
-      position: absolute;
-      right: 0;
-      display: block;
-      width: 50px;
-  }
+  color: ${DARK_BLUE};
+  font-family: Montserrat, sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  padding: 25px 0 10px;
+  text-align: left;
+  width: 100%;
 }
 `;
 
-const ListContainer = styled(PodcastParentContainer)`
-  background-color: ${WHITE};
+const PodcastSingleDate = styled.div`
+  font-weight: 500;
+  padding: 0 0 5px;
 `;
 
+interface TabContentProps {
+  value: number;
+  index: number;
+  children: ReactNode | string;
+}
+
+const TabContent = ({ value, index, children }: TabContentProps) => {
+  return (
+    <>
+      {value == index && <>{children}</>}
+    </>
+  );
+};
 
 const PodCastSingle = () => {
-  const PageSize = 9;
-  const { name } = useParams();
+
+  const { podcast } = useParams();
   const { episodes } = getData();
-  const [currentPage, setCurrentPage] = useState<number>(1);
 
-  const newItem = useMemo(() => formatPagePath(name), [name]);
-
-  const matchingPodcasts = useMemo(() => { return episodes.filter(item => item.series?.includes(newItem)) }, [episodes, newItem]);
-
-  const currentTableData = useMemo(() => {
-    const firstPageIndex = (currentPage - 1) * PageSize;
-    const lastPageIndex = firstPageIndex + PageSize;
-    return matchingPodcasts.slice(firstPageIndex, lastPageIndex);
-  }, [currentPage]);
+  const newItem = useMemo(() => formatPagePath(podcast), [podcast]);
+  
+  const matchingPodcast = useMemo(() => { return episodes.filter(item => item.title?.toLowerCase().includes(newItem.trim().toLowerCase())) }, [episodes, newItem]);
 
   /**
-   * TODO - reformat `PodcastList` and set it via Context for all components
+   * Set first tab active on default
    */
-  const PodcastList = useMemo(() => {
-    if (!currentTableData) return [];
+  const [value, setValue] = useState<number>(0);
 
-    if (currentTableData) {
-      return (
-        <>
-          {currentTableData.map((item) => {
-            return <Podcast key={item.id} title={item.title} description={item.description} url={item.episode_url_slug} />;
-          })}
-        </>
-      );
-    }
-  }, [currentTableData]);
-
+  const handleChange = useCallback((e: SyntheticEvent, newValue: number) => {
+    setValue(newValue);
+  }, [setValue]);
+  
   return (
     <>
       <BreadcrumbsTopWrapper>
@@ -87,19 +77,21 @@ const PodCastSingle = () => {
       <PodcastSingleWrapper>
         <PodcastSingleHeader>
           <Title>{newItem}</Title>
+          <PodcastSingleDate>Episode Date: {matchingPodcast[0].release_date}</PodcastSingleDate>
         </PodcastSingleHeader>
-        <ListContainer data-testid={PodcastType.PODCAST_PARENT}>
-            {PodcastList}
-        </ListContainer>
-        <PaginationParent data-testid={PaginationType.PAGINATION_PARENT}>
-              <Pagination
-                className={`pagination-bar`}
-                currentPage={currentPage}
-                totalCount={matchingPodcasts.length}
-                pageSize={PageSize}
-                onPageChange={(page: number) => setCurrentPage(page)}
-              />
-            </PaginationParent>
+        <Tabs
+          value={value}
+          onChange={handleChange}
+        >
+          <Tab label="Transcript" />
+          <Tab label="Discussion" />
+        </Tabs>
+        <TabContent value={value} index={0}>
+          
+        </TabContent>
+        <TabContent value={value} index={1}>
+         
+        </TabContent>
       </PodcastSingleWrapper>
     </>
   );

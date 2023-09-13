@@ -84,6 +84,7 @@ const Podcasts = () => {
                         const link = item.title
                           .toLocaleLowerCase()
                           .replaceAll(' ', '_');
+
                         return (
                           <LinkNoDeco key={item.id} to={`/podcasts/${link}`}>
                             {item.title}

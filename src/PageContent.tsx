@@ -2,17 +2,10 @@ import { Box, Drawer } from '@mui/material';
 import { BodyTextLight, BodyTextSmall } from 'components/core/typography/BodyText';
 import Button from 'components/ui/Button';
 import ShushingFaceIcon from 'components/ui/icons/ShushingFaceIcon';
-import PodCastSingle from 'PodcastSingle';
 import { useState } from 'react';
-import { Link, Route, Routes } from 'react-router-dom';
-import SignIn from 'SignIn';
+import { Link } from 'react-router-dom';
 import { BLUE, RED } from 'styles/color';
 import { SPACE_10, SPACE_80 } from 'styles/spacing';
-import SubmitPodcast from 'SubmitPodcast';
-import About from './About';
-import Contact from './Contact';
-import Home from './Home';
-import Podcasts from './Podcasts';
 
 enum DrawerType {
   RIGHT_SIDE_MENU = 'right-side-menu',
@@ -34,15 +27,6 @@ const PageContent = () => {
    */
   return (
     <div>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="podcasts" element={<Podcasts />} />
-        <Route path="about" element={<About />} />
-        <Route path="contact" element={<Contact />} />
-        <Route path="podcasts/:name" element={<PodCastSingle />} />
-        <Route path="submit" element={<SubmitPodcast />} />
-        <Route path="loginregister" element={<SignIn />} />
-      </Routes>
       <Drawer
           data-testid={DrawerType.RIGHT_SIDE_MENU}
           anchor={anchorRight}

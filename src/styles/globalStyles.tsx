@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components/macro';
+import { VERY_LIGHT_GREY } from './color';
 
 const GlobalStyle = createGlobalStyle`
     html,
@@ -7,7 +8,7 @@ const GlobalStyle = createGlobalStyle`
         font-family: 'Quicksand', sans-serif;
         font-size: 12px;
         font-weight: 400;
-        background: #f9f9f9;
+        background: ${VERY_LIGHT_GREY};
     }
 `;
 
