@@ -1,10 +1,11 @@
 import { Tab, Tabs } from "@mui/material";
 import Main from "components/core/sections/page/MainContent";
+import ChatBoxIcon from "components/ui/icons/ChatbBoxIcon";
 import { getData } from "contexts/DataContext";
 import { ReactNode, SyntheticEvent, useCallback, useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
-import { DARK_BLUE, WHITE } from "styles/color";
+import { BLACK, DARK_BLUE, WHITE } from "styles/color";
 import { SPACE_40 } from "styles/spacing";
 import BreadCrumbs, { BreadcrumbsTopWrapper, formatPagePath } from "utils/BreadcrumbUtil";
 
@@ -84,7 +85,7 @@ const PodCastSingle = () => {
           onChange={handleChange}
         >
           <Tab label="Transcript" />
-          <Tab label="Discussion" />
+          <Tab label={<><ChatBoxIcon height={15} width={15} fill={BLACK} /> Discussion</>} />
         </Tabs>
         <TabContent value={value} index={0}>
           

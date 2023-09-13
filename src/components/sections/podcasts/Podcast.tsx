@@ -13,6 +13,7 @@ type PodcastProps = {
   description?: string;
   episodeCount?: number;
   url?: string;
+  main: boolean;
 };
 
 export enum PodcastType {
@@ -88,10 +89,12 @@ const LinkNoDeco = styled(Link)`
   color: ${DARK_BLUE};
 `;
 
-const Podcast = ({ title, description, url }: PodcastProps) => {
+const Podcast = ({ description, title, main }: PodcastProps) => {
+
+  console.log(main);
 
   // TODO - fix link
-  const link = title.toLocaleLowerCase().replaceAll(' ', '_');
+  const link = !!main ? `podcasts/` + title.toLocaleLowerCase().replaceAll(' ', '_') : title.toLocaleLowerCase().replaceAll(' ', '_');
 
   return (
     <PodcastContainer>

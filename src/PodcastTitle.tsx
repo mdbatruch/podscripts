@@ -74,7 +74,7 @@ const PodcastTitle = () => {
       return (
         <>
           {currentTableData.map((item) => {
-            return <Podcast key={item.id} title={item.title} description={item.description} url={item.episode_url_slug} />;
+            return <Podcast key={item.id} title={item.title} description={item.description} url={item.episode_url_slug} main={false} />;
           })}
         </>
       );

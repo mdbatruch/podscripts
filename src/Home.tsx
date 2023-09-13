@@ -38,7 +38,7 @@ const Home = () => {
       return (
         <>
           {currentTableData.map((item) => {
-            return <Podcast key={item.id} title={item.title} />;
+            return <Podcast key={item.id} title={item.title} main={true} />;
           })}
         </>
       );
