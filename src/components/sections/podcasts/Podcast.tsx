@@ -1,15 +1,17 @@
 import { BodyText } from 'components/core/typography/BodyText';
 import Button from 'components/ui/Button';
-import { memo } from 'react';
+import { memo, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components/macro';
 import { BLUE, DARK_BLUE } from 'styles/color';
 import { SPACE_10, SPACE_20, SPACE_30 } from 'styles/spacing';
 import { FONT_SIZE_14 } from 'styles/typography';
+import { formatDate } from 'utils/DateUtil';
 
 type PodcastProps = {
   title: string;
   category?: string;
+  date?: string;
   description?: string;
   episodeCount?: number;
   url?: string;
@@ -81,6 +83,12 @@ const PodcastDescContainer = styled.div`
   position: relative;
 `;
 
+const DateContainer = styled.div`
+  display: block;
+  font-weight: 500;
+  padding: 0 0 5px;
+`;
+
 /**
  * TODO - Move to generic file
  */
@@ -89,12 +97,16 @@ const LinkNoDeco = styled(Link)`
   color: ${DARK_BLUE};
 `;
 
-const Podcast = ({ description, title, main }: PodcastProps) => {
-
-  console.log(main);
+const Podcast = ({ description, title, date, main }: PodcastProps) => {
 
   // TODO - fix link
   const link = !!main ? `podcasts/` + title.toLocaleLowerCase().replaceAll(' ', '_') : title.toLocaleLowerCase().replaceAll(' ', '_');
+
+  const formattedDate = useMemo(() => {
+    const releaseDate = date;
+    return releaseDate ? formatDate(date) : '';
+  }
+  , [date]);
 
   return (
     <PodcastContainer>
@@ -114,6 +126,9 @@ const Podcast = ({ description, title, main }: PodcastProps) => {
           <PodcastTitle>
             <LinkNoDeco to={link}>{title}</LinkNoDeco>
           </PodcastTitle>
+          <DateContainer>
+            Episode Date: {formattedDate}
+          </DateContainer>
           <BodyText>
             {description}
           </BodyText>
