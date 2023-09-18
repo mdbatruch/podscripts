@@ -6,7 +6,7 @@ import { SPACE_10 } from 'styles/spacing';
 const MenuIconContainer = styled.div`
   background-color: ${BLUE};
   border-radius: 50%;
-  margin: 0 ${SPACE_10};
+  margin: 0 0 0 ${SPACE_10};
   @media screen and (min-width: 768px) {
     display: none;
   }

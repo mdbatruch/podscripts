@@ -7,7 +7,7 @@ import PlusIcon from './ui/icons/PlusIcon';
 
 const SubmitContainer = styled.div`
   display: none;
-  margin: 0 ${SPACE_20};
+  margin: 0 0 0 ${SPACE_20};
   @media screen and (min-width: 768px) {
     display: block;
   }

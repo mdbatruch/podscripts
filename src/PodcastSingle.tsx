@@ -5,11 +5,13 @@ import DocumentIcon from "components/ui/icons/DocumentIcon";
 import { getData } from "contexts/DataContext";
 import { ReactNode, SyntheticEvent, useCallback, useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
-import styled from "styled-components";
-import { BLUE, DARK_BLUE, LIGHT_GREY, WHITE } from "styles/color";
-import { SPACE_10, SPACE_40 } from "styles/spacing";
+import styled from "styled-components/macro";
+import { BLUE, DARK_BLUE, GREY_ACCENT, LIGHT_GREY, WHITE } from "styles/color";
+import { SPACE_10, SPACE_20, SPACE_40 } from "styles/spacing";
+import { FONT_SIZE_14, FONT_SIZE_16 } from "styles/typography";
 import BreadCrumbs, { BreadcrumbsTopWrapper, formatPagePath } from "utils/BreadcrumbUtil";
 import { formatDate } from "utils/DateUtil";
+import { formatPodcastTime } from "utils/TimeUtil";
 
 const PodcastSingleWrapper = styled.div`
     ${Main};
@@ -61,17 +63,43 @@ const TabParent = styled(Tabs)`
   }
 `;
 
+const TabParentContainer = styled.div`
+  padding: ${SPACE_10};
+`;
+
+const TranscriptContainer = styled.div`
+  display: inline-block;
+`;
+
+const TranscriptTimeContainer = styled.div`
+  color: ${GREY_ACCENT};
+  display: block;
+  font-weight: 600;
+  font-size: ${FONT_SIZE_14};
+  padding: 0 0 5px;
+  margin-top: ${SPACE_20};
+`;
+
+const TranscriptTextContainer = styled.div`
+  font-size: ${FONT_SIZE_16};
+`;
+
 interface TabContentProps {
   value: number;
   index: number;
   children: ReactNode | string;
 }
 
+interface TranscriptProps {
+  currTime: number;
+  text: string;
+}
+
 const TabContent = ({ value, index, children }: TabContentProps) => {
   return (
-    <>
+    <TabParentContainer>
       {value == index && <>{children}</>}
-    </>
+    </TabParentContainer>
   );
 };
 
@@ -79,6 +107,8 @@ const PodCastSingle = () => {
 
   const { podcast } = useParams();
   const { episodes } = getData();
+
+  console.log('episode', episodes);
 
   const newItem = useMemo(() => formatPagePath(podcast), [podcast]);
   
@@ -99,6 +129,40 @@ const PodCastSingle = () => {
   }
   , [matchingPodcast]);
 
+  const formattedTranscript = useMemo(() => {
+    if (!matchingPodcast[0].transcript) return [];
+
+    const transcriptParse = JSON.parse(matchingPodcast[0].transcript);
+    const transcript = transcriptParse as TranscriptProps[];
+
+    const chunkSize = 5;
+
+    const chunkedTranscript = Array.from(
+      { length: Math.ceil(transcript.length / chunkSize) },
+      (_, index) => transcript.slice(index * chunkSize, (index + 1) * chunkSize)
+    );
+
+    return (
+      <>
+          {chunkedTranscript.map((section: TranscriptProps[], index: number) => {
+            const isNewSection = index % 1 === 0;
+            const time = formatPodcastTime(section[0].currTime);
+
+            return (
+              <>
+                { isNewSection && (
+                    <TranscriptTimeContainer>Starting point is {time}</TranscriptTimeContainer>
+                  )}
+                <TranscriptContainer key={index}>
+                  <TranscriptTextContainer>{section.map((item: TranscriptProps) => item.text).join(' ')}</TranscriptTextContainer>
+                </TranscriptContainer>
+              </>
+            )
+          })}
+      </>
+    )
+  }, [matchingPodcast[0].transcript]);
+
   // const color = useMemo(() => value === 0 ? BLUE : LIGHT_GREY, [value]);
   /**
    * TODO - clean up layout, move fill attribute logic to memoized value (example above)
@@ -113,6 +177,7 @@ const PodCastSingle = () => {
         <PodcastSingleHeader>
           <Title>{newItem}</Title>
           <PodcastSingleDate>Episode Date: {formattedDate}</PodcastSingleDate>
+          <div>{matchingPodcast[0].description}</div>
         </PodcastSingleHeader>
       </PodcastSingleWrapper>
       <PodcastSingleWrapper>
@@ -124,8 +189,7 @@ const PodCastSingle = () => {
           <TabTitleContainer label={<><ChatBoxIcon height={15} width={15} fill={value === 1 ? BLUE : LIGHT_GREY} /> Discussion</>} />
         </TabParent>
         <TabContent value={value} index={0}>
-          {matchingPodcast[0].transcript}
-          {}
+          {formattedTranscript}
         </TabContent>
         <TabContent value={value} index={1}>
          

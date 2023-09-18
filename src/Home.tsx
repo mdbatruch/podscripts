@@ -34,15 +34,13 @@ const Home = () => {
   const PodcastList = useMemo(() => {
     if (!currentTableData) return [];
   
-    if (currentTableData) {
-      return (
-        <>
-          {currentTableData.map((item) => {
-            return <Podcast key={item.id} title={item.title} main={true} />;
-          })}
-        </>
-      );
-    }
+    return (
+      <>
+        {currentTableData.map((item) => {
+          return <Podcast key={item.id} title={item.title}  main={true} />;
+        })}
+      </>
+    );
   }, [currentTableData]);
 
   return (

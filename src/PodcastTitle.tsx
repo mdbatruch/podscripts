@@ -8,6 +8,7 @@ import { useParams } from 'react-router-dom';
 import styled from 'styled-components/macro';
 import { BLUE, WHITE } from 'styles/color';
 import { SPACE_40 } from 'styles/spacing';
+import { FONT_SIZE_18, FONT_SIZE_30 } from 'styles/typography';
 import BreadCrumbs, { BreadcrumbsTopWrapper, formatPagePath } from 'utils/BreadcrumbUtil';
 import { PaginationParent } from 'utils/PaginationUtil';
 
@@ -45,6 +46,17 @@ const ListContainer = styled(PodcastParentContainer)`
   background-color: ${WHITE};
 `;
 
+const NoItemsContainer = styled.div`
+  text-align: center;
+`;
+
+const NoItemsTitle = styled.h2`
+  font-size: ${FONT_SIZE_30};
+`;
+
+const NoItemsContent = styled.p`
+  font-size: ${FONT_SIZE_18};
+`;
 
 const PodcastTitle = () => {
   const PageSize = 9;
@@ -68,17 +80,28 @@ const PodcastTitle = () => {
   const PodcastList = useMemo(() => {
     if (!currentTableData) return [];
 
-    // console.log(currentTableData);
-
-    if (currentTableData) {
-      return (
-        <>
-          {currentTableData.map((item) => {
-            return <Podcast key={item.id} title={item.title} description={item.description} url={item.episode_url_slug} date={item.release_date || ''} main={false} />;
-          })}
-        </>
+    return currentTableData.length > 0 ? (
+      <>
+        {currentTableData.map((item) => {
+          return <Podcast
+                  key={item.id}
+                  title={item.title}
+                  description={item.description}
+                  url={item.episode_url_slug}
+                  date={item.release_date || ''}
+                  main={false}
+                />;
+        })}
+      </>
+      ) : (
+        <NoItemsContainer>
+          <NoItemsTitle>Whoops...</NoItemsTitle>
+            <NoItemsContent>
+              ¯\_(ツ)_/¯
+            </NoItemsContent>
+            <NoItemsContent>Looks like there's nothing here, maybe come back later for updates?</NoItemsContent>
+        </NoItemsContainer>
       );
-    }
   }, [currentTableData]);
 
   return (

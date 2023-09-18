@@ -13,7 +13,7 @@ const SearchContainer = styled.div`
 `;
 
 export interface SearchLogoProps {
-  conten?: ReactNode;
+  content?: ReactNode;
   onClick?: (e: UIEvent<HTMLElement>) => void;
   footer?: boolean;
 }

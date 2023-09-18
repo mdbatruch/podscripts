@@ -10,6 +10,7 @@ import SignInButton from 'components/ui/SignInButton';
 import { getNav } from 'contexts/NavContext';
 import { useCallback, useEffect, useState } from 'react';
 import styled from 'styled-components/macro';
+import { GREY_VERY_DARK } from 'styles/color';
 import { SPACE_20 } from 'styles/spacing';
 import { useIsMobile } from 'utils/mobileUtil';
 import ScrollToTop from 'utils/ScrollToTop';
@@ -28,15 +29,14 @@ const Header = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  background: #333;
+  background: ${GREY_VERY_DARK};
   box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.12);
   height: 75px;
   left: 0;
-  padding: 0 0;
+  padding: 0 ${SPACE_20};
   position: sticky;
   top: 0;
   -webkit-transform: translateZ(0);
-  width: 100%;
   z-index: 100;
   box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
     0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);

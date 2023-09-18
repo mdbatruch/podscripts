@@ -8,16 +8,16 @@ import { MenuItems } from 'enums/menuItems';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components/macro';
 import { BLUE, GREY_DARK, LIGHT_GREY, WHITE } from 'styles/color';
+import { GREY_VERY_DARK } from 'styles/color';
 import { SPACE_10, SPACE_20, SPACE_40 } from 'styles/spacing';
 
 const FooterMain = styled.div`
-  background: #333;
+  background: ${GREY_VERY_DARK};
   box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.12);
   left: 0;
   padding: ${SPACE_40} 0 0;
   top: 0;
   -webkit-transform: translateZ(0);
-  width: 100%;
   z-index: 100;
   box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
     0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
@@ -81,6 +81,9 @@ const FooterMenu = styled.div`
 
 const CopyrightFooter = styled.div`
     background-color: ${LIGHT_GREY};
+    @media screen and (max-width: 1239px) {
+        padding: 0 ${SPACE_20};
+    }
 `;
 
 const CopyrightFooterInner = styled.div`

@@ -1,8 +1,9 @@
 import styled from 'styled-components/macro';
+import { GREY_VERY_DARK } from 'styles/color';
 import Nav from './Nav';
 
 const SideBarContainer = styled.div`
-  background: #333;
+  background:${GREY_VERY_DARK};
   bottom: 0;
   height: 100%;
   left: -300px;
