@@ -108,9 +108,9 @@ const PodCastSingle = () => {
   const { podcast } = useParams();
   const { episodes } = getData();
 
-  console.log('episode', episodes);
-
   const newItem = useMemo(() => formatPagePath(podcast), [podcast]);
+
+  console.log('newitem', newItem);
   
   const matchingPodcast = useMemo(() => { return episodes.filter(item => item.title?.toLowerCase().includes(newItem.trim().toLowerCase())) }, [episodes, newItem]);
 

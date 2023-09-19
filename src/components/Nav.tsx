@@ -1,5 +1,4 @@
 import { MenuItems } from 'enums/menuItems';
-import { Link } from 'react-router-dom';
 import styled from 'styled-components/macro';
 import { BLUE } from 'styles/color';
 import { FONT_SIZE_14 } from 'styles/typography';
@@ -15,7 +14,7 @@ const NavContainer = styled.ul<{ $isMobile?: boolean }>`
   margin: 0px;
 `;
 
-const NavLiItem = styled(Link)<{ $isMobile?: boolean }>`
+const NavLiItem = styled.div<{ $isMobile?: boolean }>`
   list-style: none;
   font-size: ${FONT_SIZE_14};
   text-decoration: none;
@@ -40,7 +39,7 @@ const Nav = (props: NavProps) => {
     <NavContainer data-testid={TestId.NAV_CONTAINER} $isMobile={isMobile}>
       {Object.values(MenuItems).map((item) => {
         return (
-          <NavLiItem key={item.label} to={item.url} $isMobile={isMobile}>
+          <NavLiItem key={item.label} $isMobile={isMobile}>
             <NavPageItem to={item.url} $isMobile={isMobile}>
               {item.label}
             </NavPageItem>

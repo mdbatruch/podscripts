@@ -72,7 +72,7 @@ const PodcastTitle = () => {
     const firstPageIndex = (currentPage - 1) * PageSize;
     const lastPageIndex = firstPageIndex + PageSize;
     return matchingPodcasts.slice(firstPageIndex, lastPageIndex);
-  }, [currentPage]);
+  }, [currentPage, matchingPodcasts]);
 
   /**
    * TODO - reformat `PodcastList` and set it via Context for all components

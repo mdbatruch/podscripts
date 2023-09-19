@@ -24,8 +24,8 @@ export enum PodcastType {
 
 export const PodcastParentContainer = styled.div`
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
-  max-width: 1224px;
   padding: 0;
   position: relative;
   z-index: 5;
@@ -99,7 +99,7 @@ const LinkNoDeco = styled(Link)`
 const Podcast = ({ description, title, date, main }: PodcastProps) => {
 
   // TODO - fix link
-  const link = !!main ? `podcasts/` + encodeURIComponent(title.toLocaleLowerCase().replaceAll(' ', '_')) : encodeURIComponent(title.toLocaleLowerCase().replaceAll(' ', '_'));
+  const link = !!main ? `podcasts/` + encodeURIComponent(title.toLocaleLowerCase().replace(/\s/g, '_')) : encodeURIComponent(title.toLocaleLowerCase().replace(/\s/g, '_'));
 
   const formattedDate = useMemo(() => {
     const releaseDate = date;
